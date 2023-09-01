@@ -1,4 +1,5 @@
 import os
+from flask import make_response
 import psycopg2
 
 conn = psycopg2.connect(
@@ -46,27 +47,46 @@ print ("made")
 
 # Insert data into the table
 
+path="./Melnik_1308.pdf"
+f = open(path,'rb')
+dat = f.read()
+binary = psycopg2.Binary(dat)
+
 cur.execute('INSERT INTO dmel_books (title, discription, file)'
-            'VALUES (%s, %s, NULL)',
-            ('C++++',
-             'Charles Dickens')
+            'VALUES (%s, %s, %s)',
+            ('C++++', 'Charles Dickens', binary)
             )
 
-cur.execute('INSERT INTO dmel_book_tags (tag_id, book_id)'
-            'VALUES (%s, %s)',
-            (25, 14)
-            )
+# cur.execute('INSERT INTO dmel_book_tags (tag_id, book_id)'
+#             'VALUES (%s, %s)',
+#             (25, 14)
+#             )
 
-cur.execute('INSERT INTO dmel_book_authors (author_id, book_id)'
-            'VALUES (%s, %s)',
-            (5, 4)
-            )
+# cur.execute('INSERT INTO dmel_book_authors (author_id, book_id)'
+#             'VALUES (%s, %s)',
+#             (5, 4)
+#             )
 
-cur.execute("INSERT INTO dmel_tags VALUES (%s, %s);", (5, "qooq") )
+# cur.execute("INSERT INTO dmel_tags VALUES (%s, %s);", (5, "qooq") )
 
-cur.execute("INSERT INTO dmel_authors VALUES (%s, %s);", (1, "Tolstoy") )
+# cur.execute("INSERT INTO dmel_authors VALUES (%s, %s);", (1, "Tolstoy") )
 
 conn.commit()
+
+cur.execute('SELECT * from dmel_books')
+
+book = cur.fetchone()
+print(book[3])
+
+f = open('code.txt', "wb")
+f.write(book[3].tobytes())
+
+file = open('new.pdf', 'wb')
+for line in open('code.txt', 'rb').readlines():
+    file.write(line)
+file.close()
+
+# print(book[3].tobytes())
 
 cur.close()
 conn.close()
