@@ -5,7 +5,8 @@ from DataBase import DataBase
 
 admin = Blueprint('admin', __name__, template_folder='templates', static_folder='static')
 
-_hesh = [{"url": '.index', "title": 'Панель'}]
+_hesh = [{"url": '.index', "title": 'Панель'},
+         {"url": '.showList', "title": 'Книги'}]
 
 def connect_db():
   conn = psycopg2.connect(
@@ -60,6 +61,11 @@ def logout():
       return redirect(url_for('.login'))
   logout_admin()
   return redirect(url_for('.login'))
+
+@admin.route('/book_list')
+def showList():
+  books = dbase.getBooks()
+  return render_template('admin/book_list.html', title = "Список книг", hesh = _hesh, books = books)
 
 def login_admin():
   session['admin_logged'] = 1
