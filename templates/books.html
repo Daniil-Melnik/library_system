@@ -4,16 +4,27 @@
 {{ super() }}
 <hr>
 <h2>Список книг</h2>
-<ul class="list-posts">
+{% for cat, msg in get_flashed_messages(True) %}
+<div class="flash {{cat}}">{{msg}}</div>
+{% endfor %}
+<table>
+  <tr>
+    <th>id</th>
+    <th>Автор</th>
+    <th>Название</th>
+    <th>Год издания</th>
+    <th>Кол-во страниц</th>
+  </tr>
   {% for b in books %}
-  <li>
-    <p>{{ b[0] }}</p>
-    <p>{{ b[1] }}</p>
-    <p>{{ b[2] }}</p>
-    <p>{{ b[3] }}</p>
-    <p>{{ b[4] }}</p>
-    <p>{{ b[5] }}</p>
-  </li>
+  <tr>
+    <td>{{ b[0] }}
+    <td>{{ b[1] }}
+    <td>{{ b[2] }}
+    <td>{{ b[3] }}
+    <td>{{ b[4] }}
+    <td>{{ b[5] }}
+    <td><a href="{{ url_for('download', book_id=b[0]) }}">скачать</a>
+  </tr>
   {% endfor %}
-</ul>
+</table>
 {% endblock %}

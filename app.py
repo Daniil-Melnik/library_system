@@ -1,5 +1,6 @@
-from flask import Flask, render_template, g
+from flask import Flask, abort, flash, render_template, g
 import psycopg2
+import os
 
 from DataBase import DataBase
 
@@ -7,7 +8,7 @@ app = Flask(__name__)
 
 app.config['SECRET_KEY'] = 'home56172'
 
-hesh = [{"title": "Главная", "url": "/"}, {"title": "Книги", "url": "/books"}, {"title": "Авторы", "url": "/authors"}]
+hesh = [{"title": "Главная", "url": "/"}, {"title": "Книги", "url": "/books"}]
 
 def connect_db():
   conn = psycopg2.connect(
@@ -46,9 +47,29 @@ def books():
   print (_books)
   return render_template('books.html', title="Книги", menu=hesh, books = _books)
 
-@app.route("/authors")
-def authors():
-  return render_template('index.html', title="Авторы", menu=hesh)
+@app.route("/download/<book_id>")
+def download(book_id):
+  book = dbase.getBook(book_id)
+  current_path = os.getcwd()
+  download_name = book[2].lower().replace(" ", "_") + ".pdf"
+
+  f = open('code.txt', "wb")
+  f.write(book[6].tobytes())
+
+  # file = open(current_path+"/"+download_name, 'wb')
+  dir_spl  = current_path.split('\\')
+  dir = "C:/Users/" + dir_spl[2] + "/Downloads"
+  file = open(dir + "/" + download_name, 'wb')
+  for line in open('code.txt', 'rb').readlines():
+    file.write(line)
+  file.close()
+
+  _books = dbase.getBooks()
+  if file:
+    flash("Файл " + download_name + " сохранён в " + dir, "success")
+  if not book:
+    abort(404)
+  return render_template('books.html', menu = hesh, title="Книги", books=_books)
 
 if __name__ == "__main__":
   app.run(debug = True)
