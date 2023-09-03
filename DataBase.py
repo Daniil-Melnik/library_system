@@ -24,3 +24,16 @@ class DataBase:
     except:
       print("Ошибка чтения из БД")
     return []
+  
+  def getBookImage(self, book_id):
+    img = None
+    try:
+      self.__cur.execute(f"SELECT * FROM dmel_books WHERE id = '{book_id}' LIMIT 1")
+      res = self.__cur.fetchone()
+      print (res)
+      img = res[7]
+      if img: return img
+    except :
+      print("Ошибка чтения из БД")
+
+    

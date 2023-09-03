@@ -1,4 +1,4 @@
-from flask import Flask, abort, flash, render_template, g
+from flask import Flask, abort, flash, make_response, render_template, g
 import psycopg2
 import os
 
@@ -20,8 +20,9 @@ def connect_db():
 
 def create_db():
   db = connect_db()
-  with app.open_instance_resource('db.sql', mode = 'r') as f:
-    db.cursor().execute(f.read())
+  f = open('./instance/db.sql', 'r', encoding='utf-8')
+  # with app.open_instance_resource('db.sql', mode = 'r') as f:
+  db.cursor().execute(f.read())
   db.commit()
   db.close()
 
@@ -70,6 +71,19 @@ def download(book_id):
   if not book:
     abort(404)
   return render_template('books.html', menu = hesh, title="Книги", books=_books)
+
+@app.route("/book_image/<book_id>")
+def book_image(book_id):
+  img = dbase.getBookImage(book_id).tobytes()
+  
+  h = make_response(img)
+  h.headers['Content-Type'] = 'image/jpeg'
+  return h
+
+@app.route("/show_card/<book_id>")
+def show_card(book_id):
+  _book = dbase.getBook(book_id)
+  return render_template('book_card.html', menu = hesh, title="Книги", book = _book)
 
 if __name__ == "__main__":
   app.run(debug = True)
