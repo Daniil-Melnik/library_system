@@ -42,7 +42,9 @@ def index():
 
 @app.route("/books")
 def books():
-  return render_template('index.html', title="Книги", menu=hesh)
+  _books = dbase.getBooks()
+  print (_books)
+  return render_template('books.html', title="Книги", menu=hesh, books = _books)
 
 @app.route("/authors")
 def authors():

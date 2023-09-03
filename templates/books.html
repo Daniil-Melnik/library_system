@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{{ super() }}
+<hr>
+<h2>Список книг</h2>
+<ul class="list-posts">
+  {% for b in books %}
+  <li>
+    <p>{{ b[0] }}</p>
+    <p>{{ b[1] }}</p>
+    <p>{{ b[2] }}</p>
+    <p>{{ b[3] }}</p>
+    <p>{{ b[4] }}</p>
+    <p>{{ b[5] }}</p>
+  </li>
+  {% endfor %}
+</ul>
+{% endblock %}
