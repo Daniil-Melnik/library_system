@@ -1,6 +1,7 @@
 from flask import Flask, abort, flash, make_response, render_template, g
 import psycopg2
 import os
+from admin.admin import admin
 
 from DataBase import DataBase
 
@@ -9,6 +10,8 @@ app = Flask(__name__)
 app.config['SECRET_KEY'] = 'home56172'
 
 hesh = [{"title": "Главная", "url": "/"}, {"title": "Книги", "url": "/books"}]
+
+app.register_blueprint(admin, url_prefix='/admin')
 
 def connect_db():
   conn = psycopg2.connect(
