@@ -18,6 +18,7 @@
       <td>{{ b[3] }}
       <td>{{ b[4] }}
       <td>{{ b[5] }}
+      <td><a href="{{ url_for('admin.delete_book', book_id=b[0]) }}">Удалить</a>
     </tr>
     {% endfor %}
   </table>

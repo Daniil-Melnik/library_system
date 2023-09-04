@@ -1,6 +1,11 @@
 from flask import url_for
 import psycopg2
 
+import traceback  # Just to show the full traceback
+from psycopg2 import errors
+
+InFailedSqlTransaction = errors.lookup('25P02')
+
 
 class DataBase:
   def __init__(self, db):
@@ -54,3 +59,14 @@ class DataBase:
       return True
     except :
       print("Ошибка добавления в БД")
+
+  def deleteBook(self, book_id):
+    try:
+      print(book_id)
+      self.__cur.execute("DELETE FROM dmel_books WHERE id = %s", [book_id])
+      self.__db.commit()
+      return True
+    except InFailedSqlTransaction:
+                traceback.print_exc()
+                self._cr.rollback()
+                pass

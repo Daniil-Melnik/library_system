@@ -88,5 +88,6 @@ def show_card(book_id):
   _book = dbase.getBook(book_id)
   return render_template('book_card.html', menu = hesh, title="Книги", book = _book)
 
+
 if __name__ == "__main__":
   app.run(debug = True)

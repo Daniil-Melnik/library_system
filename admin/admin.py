@@ -71,15 +71,19 @@ def showList():
 @admin.route('/add_book', methods = ["POST", "GET"])
 def add_book():
   if request.method == "POST":
-    # print(request.files)
     dbase.addBook(request.form['author'],request.form['title'],request.form['num_pg'], request.form['year'], request.form['discr'], request.files['image'], request.files['file'])
     books = dbase.getBooks()
-    return render_template('admin/book_list.html', title = "Список книг", hesh = _hesh, books = books)
+    return redirect(url_for('admin.showList'))
 
 @admin.route('/add_book_form')
 def addBook_form():
   books = dbase.getBooks()
   return render_template('admin/add_book.html', title = "Добавить книгу", hesh = _hesh, books = books)
+
+@admin.route("/delete_book/<book_id>")
+def delete_book(book_id):
+  dbase.deleteBook(book_id)
+  return redirect(url_for('admin.showList'))
 
 def login_admin():
   session['admin_logged'] = 1
