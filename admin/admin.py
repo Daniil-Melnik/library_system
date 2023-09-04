@@ -6,7 +6,8 @@ from DataBase import DataBase
 admin = Blueprint('admin', __name__, template_folder='templates', static_folder='static')
 
 _hesh = [{"url": '.index', "title": 'Панель'},
-         {"url": '.showList', "title": 'Книги'}]
+         {"url": '.showList', "title": 'Книги'},
+         {"url": '.addBook_form', "title": 'Добавить книгу'}]
 
 def connect_db():
   conn = psycopg2.connect(
@@ -67,8 +68,22 @@ def showList():
   books = dbase.getBooks()
   return render_template('admin/book_list.html', title = "Список книг", hesh = _hesh, books = books)
 
+@admin.route('/add_book', methods = ["POST", "GET"])
+def add_book():
+  if request.method == "POST":
+    # print(request.files)
+    dbase.addBook(request.form['author'],request.form['title'],request.form['num_pg'], request.form['year'], request.form['discr'], request.files['image'], request.files['file'])
+    books = dbase.getBooks()
+    return render_template('admin/book_list.html', title = "Список книг", hesh = _hesh, books = books)
+
+@admin.route('/add_book_form')
+def addBook_form():
+  books = dbase.getBooks()
+  return render_template('admin/add_book.html', title = "Добавить книгу", hesh = _hesh, books = books)
+
 def login_admin():
   session['admin_logged'] = 1
+
 
 def is_logged():
   return True if session.get('admin_logged') else False
