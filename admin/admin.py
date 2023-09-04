@@ -85,6 +85,19 @@ def delete_book(book_id):
   dbase.deleteBook(book_id)
   return redirect(url_for('admin.showList'))
 
+@admin.route("/update_book_form/<book_id>")
+def update_book_form(book_id):
+  books = dbase.getBooks()
+  book = dbase.getBook(book_id)
+  return render_template('admin/update_book.html', title = "Редактирование", hesh = _hesh, books = books, book_id=book_id, book=book)
+
+@admin.route("/update_book/<book_id>", methods = ["POST", "GET"])
+def update_book(book_id):
+  if request.method == "POST":
+    dbase.updateBook(book_id, request.form['author'],request.form['title'],request.form['num_pg'], request.form['year'], request.form['discr'])
+  books = dbase.getBooks()
+  return render_template('admin/book_list.html', title = "Список книг", hesh = _hesh, books = books)
+
 def login_admin():
   session['admin_logged'] = 1
 

@@ -70,3 +70,17 @@ class DataBase:
                 traceback.print_exc()
                 self._cr.rollback()
                 pass
+  def updateBook(self, book_id, author, title, num_pg, year, discription):
+    try:
+
+      self.__cur.execute('UPDATE dmel_books SET author = %s WHERE id = %s ', (author, book_id))
+      self.__cur.execute('UPDATE dmel_books SET title = %s WHERE id = %s ', (title, book_id))
+      self.__cur.execute('UPDATE dmel_books SET year = %s WHERE id = %s ', (year, book_id))
+      self.__cur.execute('UPDATE dmel_books SET num_pg = %s WHERE id = %s ', (num_pg, book_id))
+      self.__cur.execute('UPDATE dmel_books SET discription = %s WHERE id = %s ', (discription, book_id))
+      print("OK1")
+      self.__db.commit()
+      print("OK2")
+      return True
+    except :
+      print("Ошибка изменения в БД")
