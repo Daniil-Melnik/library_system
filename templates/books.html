@@ -23,7 +23,7 @@
     <td>{{ b[3] }}
     <td>{{ b[4] }}
     <td>{{ b[5] }}
-    <td><a href="{{ url_for('download', book_id=b[0]) }}">скачать</a>
+    <td><a href="{{ url_for('download', book_id=b[0], template='books.html') }}">скачать</a>
   </tr>
   {% endfor %}
 </table>

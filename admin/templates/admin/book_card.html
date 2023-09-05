@@ -2,6 +2,9 @@
 
 {% block content %}
 {{ super() }}
+{% for cat, msg in get_flashed_messages(True) %}
+<div class="flash {{cat}}">{{msg}}</div>
+{% endfor %}
 <p><img class="book_image" src="{{ url_for('book_image', book_id = book[0]) }}"><a href="{{ url_for('admin.update_files_form', book_id=book[0]) }}">Изменить</a></p>
 <p>Основная информация: <a href="{{ url_for('admin.update_book_form', book_id=book[0]) }}">Изменить</a></p>
 <p> {{ book[2] }} </p>
@@ -10,4 +13,5 @@
 <p>Кол-во страниц: {{ book[4] }} </p>
 <p>Описание: </p>
 <p>{{ book[5] }}</p>
+<p>Файл: <a href="{{ url_for('admin.download', book_id=book[0]) }}">скачать</a> <a href="{{ url_for('admin.update_book_file_form', book_id=book[0]) }}">изменить</a></p>
 {% endblock %}

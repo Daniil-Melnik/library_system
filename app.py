@@ -51,8 +51,8 @@ def books():
   print (_books)
   return render_template('books.html', title="Книги", menu=hesh, books = _books)
 
-@app.route("/download/<book_id>")
-def download(book_id):
+@app.route("/download/<book_id>/<template>")
+def download(book_id, template):
   book = dbase.getBook(book_id)
   current_path = os.getcwd()
   download_name = book[2].lower().replace(" ", "_") + ".pdf"
@@ -73,7 +73,7 @@ def download(book_id):
     flash("Файл " + download_name + " сохранён в " + dir, "success")
   if not book:
     abort(404)
-  return render_template('books.html', menu = hesh, title="Книги", books=_books)
+  return render_template(template, menu = hesh, title="Книги", books=_books)
 
 @app.route("/book_image/<book_id>")
 def book_image(book_id):

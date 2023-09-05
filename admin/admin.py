@@ -1,4 +1,5 @@
-from flask import Blueprint, flash, redirect, render_template, request, session, url_for, g
+import os
+from flask import Blueprint, abort, flash, redirect, render_template, request, session, url_for, g
 import psycopg2
 
 from DataBase import DataBase
@@ -91,6 +92,14 @@ def update_book_form(book_id):
   book = dbase.getBook(book_id)
   return render_template('admin/update_book.html', title = "Редактирование", hesh = _hesh, books = books, book_id=book_id, book=book)
 
+@admin.route("/update_book_file_form/<book_id>")
+def update_book_file_form(book_id):
+  books = dbase.getBooks()
+  book = dbase.getBook(book_id)
+  return render_template('admin/update_book_file.html', title = "Редактирование", hesh = _hesh, books = books, book_id=book_id, book=book)
+
+
+
 @admin.route("/update_book/<book_id>", methods = ["POST", "GET"])
 def update_book(book_id):
   if request.method == "POST":
@@ -108,13 +117,40 @@ def update_files_form(book_id):
 def update_files(book_id):
   if request.method == "POST":
     dbase.updateFileImg(book_id, request.files['image'])
-  books = dbase.getBooks()
+  return redirect(url_for('admin.show_card', book_id=book_id))
+
+@admin.route("/update_book_file/<book_id>", methods = ["POST", "GET"])
+def update_book_file(book_id):
+  if request.method == "POST":
+    dbase.updateFilePdf(book_id, request.files['file'])
   return redirect(url_for('admin.show_card', book_id=book_id))
 
 @admin.route("/show_card/<book_id>")
 def show_card(book_id):
   _book = dbase.getBook(book_id)
   return render_template('admin/book_card.html', hesh = _hesh, title="Информация о книге", book = _book)
+
+@admin.route("/download/<book_id>")
+def download(book_id):
+  book = dbase.getBook(book_id)
+  current_path = os.getcwd()
+  download_name = book[2].lower().replace(" ", "_") + ".pdf"
+
+  f = open('code.txt', "wb")
+  f.write(book[6].tobytes())
+
+  dir_spl  = current_path.split('\\')
+  dir = "C:/Users/" + dir_spl[2] + "/Downloads"
+  file = open(dir + "/" + download_name, 'wb')
+  for line in open('code.txt', 'rb').readlines():
+    file.write(line)
+  file.close()
+
+  if file:
+    flash("Файл " + download_name + " сохранён в " + dir, "success")
+  if not book:
+    abort(404)
+  return redirect(url_for('admin.show_card', book_id=book_id))
 
 def login_admin():
   session['admin_logged'] = 1
