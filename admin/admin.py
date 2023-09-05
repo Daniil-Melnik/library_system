@@ -72,8 +72,8 @@ def showList():
 @admin.route('/add_book', methods = ["POST", "GET"])
 def add_book():
   if request.method == "POST":
-    dbase.addBook(request.form['author'],request.form['title'],request.form['num_pg'], request.form['year'], request.form['discr'], request.files['image'], request.files['file'])
-    books = dbase.getBooks()
+    val = 1 if request.form.get('is_open') else 0
+    dbase.addBook(request.form['author'],request.form['title'],request.form['num_pg'], request.form['year'], request.form['discr'], request.files['image'], request.files['file'], val)
     return redirect(url_for('admin.showList'))
 
 @admin.route('/add_book_form')
@@ -103,7 +103,9 @@ def update_book_file_form(book_id):
 @admin.route("/update_book/<book_id>", methods = ["POST", "GET"])
 def update_book(book_id):
   if request.method == "POST":
-    dbase.updateBook(book_id, request.form['author'],request.form['title'],request.form['num_pg'], request.form['year'], request.form['discr'])
+    val = 1 if request.form.get('is_open') else 0
+
+    dbase.updateBook(book_id, request.form['author'],request.form['title'],request.form['num_pg'], request.form['year'], request.form['discr'], val)
   books = dbase.getBooks()
   return redirect(url_for('admin.show_card', book_id=book_id))
 
@@ -128,6 +130,7 @@ def update_book_file(book_id):
 @admin.route("/show_card/<book_id>")
 def show_card(book_id):
   _book = dbase.getBook(book_id)
+  print (_book)
   return render_template('admin/book_card.html', hesh = _hesh, title="Информация о книге", book = _book)
 
 @admin.route("/download/<book_id>")

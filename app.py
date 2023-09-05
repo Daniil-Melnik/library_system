@@ -82,7 +82,6 @@ def book_image(book_id):
     img = img.tobytes()
 
   if img == None:
-    print ("NONE")
     img = open('./static/images/default.jpg', "rb")
     img = img.read()
     
@@ -99,3 +98,5 @@ def show_card(book_id):
 
 if __name__ == "__main__":
   app.run(debug = True)
+
+# create_db()

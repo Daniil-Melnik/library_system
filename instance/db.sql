@@ -9,7 +9,8 @@ CREATE TABLE dmel_books (id serial PRIMARY KEY,
                         num_pg integer NOT NULL,
                         discription varchar (500) NOT NULL,
                         file bytea DEFAULT NULL,
-                        image bytea DEFAULT NULL);       
+                        image bytea DEFAULT NULL,
+                        is_open integer DEFAULT 0);       
                                 
 
 CREATE TABLE dmel_tags (id serial PRIMARY KEY,
@@ -20,11 +21,13 @@ CREATE TABLE dmel_book_tags (id serial PRIMARY KEY,
                              tag_id integer NOT NULL,
                              book_id integer NOT NULL);
 
-INSERT INTO dmel_books (title, author, year, num_pg, discription, file, image)
-VALUES ('Портрет Дориана Грея', 'Уайльд Оскар', 2019, 320,'Портрет молого человаека по имени Дориан Грей', NULL, NULL),
-	('1984 (новый перевод)', 'Оруэлл Д.', 2020, 322,'Классика американской антиутопии', NULL, NULL),
-	('Маленькие женщины', 'Олкотт Луиза Мэй',2021, 384,'Известный роман известной писательницы о сильных женщинах', NULL, NULL),
-	('Повелитель мух', 'Голдинг Уильям Джеральд',2020, 320,'Проза об одичавших на острове', NULL, NULL);
+INSERT INTO dmel_books (title, author, year, num_pg, discription, is_open, file, image)
+VALUES ('Портрет Дориана Грея', 'Уайльд Оскар', 2019, 320,'Портрет молого человаека по имени Дориан Грей', 1, NULL, NULL),
+	('1984 (новый перевод)', 'Оруэлл Д.', 2020, 322,'Классика американской антиутопии', 1, NULL, NULL),
+	('Маленькие женщины', 'Олкотт Луиза Мэй',2021, 384,'Известный роман известной писательницы о сильных женщинах', 1, NULL, NULL),
+    ('В окопах Сталинграда', 'Некрасов В. П.',2019, 314,'Произведение об одной из самых важный и кровопролитных битв в Великой Отечественной войне', 1, NULL, NULL),
+	('Повелитель мух', 'Голдинг Уильям Джеральд',2020, 320,'Проза об одичавших на острове', 1, NULL, NULL);
+
                                   
                                   
 

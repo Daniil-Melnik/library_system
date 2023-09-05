@@ -42,16 +42,16 @@ class DataBase:
     except :
       print("Ошибка чтения из БД")
 
-  def addBook(self, author, title, num_pg, year, discription, image, file):
+  def addBook(self, author, title, num_pg, year, discription, image, file, is_open):
     try:
       dat = file.read()
       binary_file = psycopg2.Binary(dat)
 
       dat = image.read()
       binary_img = psycopg2.Binary(dat)
-      self.__cur.execute('INSERT INTO dmel_books (author, title, year, num_pg, discription, file, image)'
-                  'VALUES (%s, %s, %s, %s, %s, %s, %s)',
-                  (author, title, year, num_pg, discription, binary_file, binary_img)
+      self.__cur.execute('INSERT INTO dmel_books (author, title, year, num_pg, discription, file, image, is_open)'
+                  'VALUES (%s, %s, %s, %s, %s, %s, %s, %s)',
+                  (author, title, year, num_pg, discription, binary_file, binary_img, is_open)
                   )
       print("OK1")
       self.__db.commit()
@@ -70,7 +70,7 @@ class DataBase:
                 traceback.print_exc()
                 self._cr.rollback()
                 pass
-  def updateBook(self, book_id, author, title, num_pg, year, discription):
+  def updateBook(self, book_id, author, title, num_pg, year, discription, is_open):
     try:
 
       self.__cur.execute('UPDATE dmel_books SET author = %s WHERE id = %s ', (author, book_id))
@@ -78,6 +78,7 @@ class DataBase:
       self.__cur.execute('UPDATE dmel_books SET year = %s WHERE id = %s ', (year, book_id))
       self.__cur.execute('UPDATE dmel_books SET num_pg = %s WHERE id = %s ', (num_pg, book_id))
       self.__cur.execute('UPDATE dmel_books SET discription = %s WHERE id = %s ', (discription, book_id))
+      self.__cur.execute('UPDATE dmel_books SET is_open = %s WHERE id = %s ', (is_open, book_id))
       print("OK1")
       self.__db.commit()
       print("OK2")

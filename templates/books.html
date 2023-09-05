@@ -16,6 +16,7 @@
     <th>Кол-во страниц</th>
   </tr>
   {% for b in books %}
+  {% if b[8] == 1 %}
   <tr>
     <td>{{ b[0] }}
     <td>{{ b[1] }}
@@ -25,6 +26,7 @@
     <td>{{ b[5] }}
     <td><a href="{{ url_for('download', book_id=b[0], template='books.html') }}">скачать</a>
   </tr>
+  {% endif %}
   {% endfor %}
 </table>
 {% endblock %}
