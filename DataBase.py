@@ -168,3 +168,16 @@ class DataBase:
                 traceback.print_exc()
                 self._cr.rollback()
                 pass
+    
+  def addTagBook(self, book_id, tag_id):
+    try:
+      self.__cur.execute('INSERT INTO dmel_book_tags (book_id, tag_id)'
+                  'VALUES (%s, %s)',
+                  (book_id, tag_id)
+                  )
+      self.__db.commit()
+      return True
+    except InFailedSqlTransaction:
+                traceback.print_exc()
+                self._cr.rollback()
+                pass

@@ -190,12 +190,20 @@ def update_tags(book_id):
     for t2 in all_tags:
       if(t[1] == t2[0]):
         tags.append(t2)
-  return render_template('admin/update_tags.html', hesh = _hesh, title="Редактирование тегов", book = _book, tags = tags)
+  return render_template('admin/update_tags.html', hesh = _hesh, title="Редактирование тегов", book = _book, tags = tags, all_tags = all_tags)
 
 
 @admin.route("/delete_tag_book/<tag_id>/<book_id>")
 def delete_tag_book(book_id, tag_id):
   dbase.deleteTagBook(book_id, tag_id)
+  return redirect(url_for('admin.update_tags', book_id=book_id))
+
+@admin.route("/add_tag_book/<book_id>", methods = ["POST", "GET"])
+def add_tag_book(book_id):
+  if request.method == "POST":
+    book_id = book_id
+    tag_id = request.form.get('tag_id')
+    dbase.addTagBook(book_id, tag_id)
   return redirect(url_for('admin.update_tags', book_id=book_id))
 
 

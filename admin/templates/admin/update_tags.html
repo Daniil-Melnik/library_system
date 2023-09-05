@@ -16,6 +16,14 @@
   </tr>
   {% endfor %}
 </table>
-
+ 
+<form  action="{{ url_for('admin.add_tag_book', book_id=book[0]) }}" method="POST" enctype="multipart/form-data" >
+  <select name="tag_id">
+    {% for a_t in all_tags %}
+    <option value="{{ a_t[0] }}">{{ a_t[1] }}</option>
+    {% endfor %}
+  </select>
+  <p><input type="submit"  value="Добавить"/>
+</form>
 {% endblock %}
 
