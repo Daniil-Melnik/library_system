@@ -1,0 +1,18 @@
+{% extends 'admin/base_admin.html' %}
+
+{% block content %}
+{{ super() }}
+<p>Теги: </p>
+<table>
+  <tr>
+    <th align="center">id</td>
+    <th align="center">Тег</td>
+  </tr>
+  {% for t in tags %}
+  <tr>
+    <td align="center">{{ t[0] }}</td>
+    <td align="center">{{ t[1] }}</td>
+  </tr>
+  {% endfor %}
+</table>
+{% endblock %}

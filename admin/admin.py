@@ -8,6 +8,7 @@ admin = Blueprint('admin', __name__, template_folder='templates', static_folder=
 
 _hesh = [{"url": '.index', "title": 'Панель'},
          {"url": '.showList', "title": 'Книги'},
+         {"url": '.show_tags', "title": 'Теги'},
          {"url": '.addBook_form', "title": 'Добавить книгу'}]
 
 def connect_db():
@@ -161,6 +162,11 @@ def download(book_id):
   if not book:
     abort(404)
   return redirect(url_for('admin.show_card', book_id=book_id))
+
+@admin.route("/show_tags")
+def show_tags():
+  tags = dbase.getAllTags()
+  return render_template('admin/tag_page.html', title = "Теги", hesh = _hesh,  tags = tags)
 
 def login_admin():
   session['admin_logged'] = 1
