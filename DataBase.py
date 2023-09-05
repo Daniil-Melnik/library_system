@@ -135,3 +135,27 @@ class DataBase:
                 traceback.print_exc()
                 self._cr.rollback()
                 pass
+  
+  def addTag(self, tag):
+    try:
+      self.__cur.execute('INSERT INTO dmel_tags (tag)'
+                  'VALUES (%s)',
+                  (tag,)
+                  )
+      self.__db.commit()
+      return True
+    except InFailedSqlTransaction:
+                traceback.print_exc()
+                self._cr.rollback()
+                pass
+    
+  def deleteTag(self, tag_id):
+    try:
+      self.__cur.execute("DELETE FROM dmel_tags WHERE id = %s", [tag_id])
+      print("TAG_ID = ")
+      print(tag_id)
+      self.__db.commit()
+    except InFailedSqlTransaction:
+                traceback.print_exc()
+                self._cr.rollback()
+                pass

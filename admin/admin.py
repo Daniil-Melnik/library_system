@@ -128,6 +128,17 @@ def update_book_file(book_id):
     dbase.updateFilePdf(book_id, request.files['file'])
   return redirect(url_for('admin.show_card', book_id=book_id))
 
+@admin.route("/add_tag", methods = ["POST", "GET"])
+def add_tag():
+  if request.method == "POST":
+    dbase.addTag(request.form['tag'])
+  return redirect(url_for('admin.show_tags'))
+
+@admin.route("/delete_tag/<tag_id>")
+def delete_tag(tag_id):
+  dbase.deleteTag(tag_id)
+  return redirect(url_for('admin.show_tags'))
+
 @admin.route("/show_card/<book_id>")
 def show_card(book_id):
   _book = dbase.getBook(book_id)
