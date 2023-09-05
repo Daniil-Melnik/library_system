@@ -1,0 +1,21 @@
+{% extends 'admin/base_admin.html' %}
+
+{% block content %}
+{{ super() }}
+
+<table>
+  <tr>
+    <th align="center">id</td>
+    <th align="center">Тег</td>
+  </tr>
+  {% for t in tags %}
+  <tr>
+    <td align="center">{{ t[0] }}</td>
+    <td align="center">{{ t[1] }}</td>
+    <td><a href="{{ url_for('admin.delete_tag_book', tag_id=t[0], book_id=book[0]) }}">Удалить</a></td>
+  </tr>
+  {% endfor %}
+</table>
+
+{% endblock %}
+

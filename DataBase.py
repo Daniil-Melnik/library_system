@@ -159,3 +159,12 @@ class DataBase:
                 traceback.print_exc()
                 self._cr.rollback()
                 pass
+    
+  def deleteTagBook(self, book_id, tag_id):
+    try:
+      self.__cur.execute("DELETE FROM dmel_book_tags WHERE book_id = %s AND tag_id = %s", [book_id, tag_id])
+      self.__db.commit()
+    except InFailedSqlTransaction:
+                traceback.print_exc()
+                self._cr.rollback()
+                pass

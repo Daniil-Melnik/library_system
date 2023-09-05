@@ -179,6 +179,26 @@ def show_tags():
   tags = dbase.getAllTags()
   return render_template('admin/tag_page.html', title = "Теги", hesh = _hesh,  tags = tags)
 
+@admin.route("/update_tags/<book_id>")
+def update_tags(book_id):
+  _book = dbase.getBook(book_id)
+  book_tags = dbase.getTagsOfBook(book_id)
+  all_tags = dbase.getAllTags()
+  print (all_tags)
+  tags = []
+  for t in book_tags:
+    for t2 in all_tags:
+      if(t[1] == t2[0]):
+        tags.append(t2)
+  return render_template('admin/update_tags.html', hesh = _hesh, title="Редактирование тегов", book = _book, tags = tags)
+
+
+@admin.route("/delete_tag_book/<tag_id>/<book_id>")
+def delete_tag_book(book_id, tag_id):
+  dbase.deleteTagBook(book_id, tag_id)
+  return redirect(url_for('admin.update_tags', book_id=book_id))
+
+
 def login_admin():
   session['admin_logged'] = 1
 
