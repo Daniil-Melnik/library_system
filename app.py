@@ -77,10 +77,18 @@ def download(book_id):
 
 @app.route("/book_image/<book_id>")
 def book_image(book_id):
-  img = dbase.getBookImage(book_id).tobytes()
+  img = dbase.getBookImage(book_id)
+  if img:
+    img = img.tobytes()
+
+  if img == None:
+    print ("NONE")
+    img = open('./static/images/default.jpg', "rb")
+    img = img.read()
+    
   
   h = make_response(img)
-  h.headers['Content-Type'] = 'image/jpeg'
+  h.headers['Content-Type'] = 'image/jpg'
   return h
 
 @app.route("/show_card/<book_id>")

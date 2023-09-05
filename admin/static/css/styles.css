@@ -116,22 +116,7 @@ ul.mainmenu li a:hover {
 	color: #777;
 }
 
-ul.list-posts {
-	list-style: none;
-	margin: 0;
-	padding: 0;
-	max-width: 600px;
-}
-ul.list-posts li {
-	margin: 20px 0 0 0;
-	border: 1px solid #eee;
-}
-ul.list-posts .title {
-	margin: 0;
-	padding: 5px;
-	background: #eee;
-}
-ul.list-posts .annonce {
-	margin: 0;
-	padding: 10px 5px 10px 5px;
+.book_image {
+	width: 320px;
+	height: 500px;
 }

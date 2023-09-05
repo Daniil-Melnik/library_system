@@ -96,7 +96,20 @@ def update_book(book_id):
   if request.method == "POST":
     dbase.updateBook(book_id, request.form['author'],request.form['title'],request.form['num_pg'], request.form['year'], request.form['discr'])
   books = dbase.getBooks()
-  return render_template('admin/book_list.html', title = "Список книг", hesh = _hesh, books = books)
+  return redirect(url_for('admin.showList'))
+
+@admin.route("/update_files_form/<book_id>")
+def update_files_form(book_id):
+  books = dbase.getBooks()
+  book = dbase.getBook(book_id)
+  return render_template('admin/update_files.html', title = "Редактирование", hesh = _hesh, books = books, book_id=book_id, book=book)
+
+@admin.route("/update_files/<book_id>", methods = ["POST", "GET"])
+def update_files(book_id):
+  if request.method == "POST":
+    dbase.updateFileImg(book_id, request.files['image'])
+  books = dbase.getBooks()
+  return redirect(url_for('admin.update_files_form', book_id=book_id))
 
 def login_admin():
   session['admin_logged'] = 1

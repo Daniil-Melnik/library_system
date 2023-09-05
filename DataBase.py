@@ -84,3 +84,18 @@ class DataBase:
       return True
     except :
       print("Ошибка изменения в БД")
+  
+  def updateFileImg(self, book_id, image):
+    try:
+      dat = image.read()
+      binary_img = psycopg2.Binary(dat)
+      print(binary_img)
+      self.__cur.execute('UPDATE dmel_books SET image = %s WHERE id = %s ', (binary_img, book_id))
+      print("OK1")
+      self.__db.commit()
+      print("OK2")
+      return True
+    except InFailedSqlTransaction:
+                traceback.print_exc()
+                self._cr.rollback()
+                pass
