@@ -8,4 +8,10 @@
 <p>Год:{{ book[3] }}, Кол-во страниц: {{ book[4] }}</p>
 <p>Описание: </p>
 <p>{{ book[5] }}</p>
+<p>Теги: </p>
+<ul>
+  {% for t in tags %}
+  <li>{{ t[1] }}</li>
+  {% endfor %}
+</ul>
 {% endblock %}

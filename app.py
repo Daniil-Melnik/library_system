@@ -93,7 +93,15 @@ def book_image(book_id):
 @app.route("/show_card/<book_id>")
 def show_card(book_id):
   _book = dbase.getBook(book_id)
-  return render_template('book_card.html', menu = hesh, title="Книги", book = _book)
+  book_tags = dbase.getTagsOfBook(book_id)
+  all_tags = dbase.getAllTags()
+  print (all_tags)
+  tags = []
+  for t in book_tags:
+    for t2 in all_tags:
+      if(t[1] == t2[0]):
+        tags.append(t2)
+  return render_template('book_card.html', menu = hesh, title="Книги", book = _book, tags = tags)
 
 
 if __name__ == "__main__":
