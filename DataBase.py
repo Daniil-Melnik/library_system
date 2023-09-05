@@ -113,3 +113,25 @@ class DataBase:
                 traceback.print_exc()
                 self._cr.rollback()
                 pass
+  
+  def getTagsOfBook(self, book_id):
+    try:
+      self.__cur.execute(f"SELECT * FROM dmel_book_tags WHERE book_id = '{book_id}'")
+      books = self.__cur.fetchall()
+      self.__db.commit()
+      return books
+    except InFailedSqlTransaction:
+                traceback.print_exc()
+                self._cr.rollback()
+                pass
+    
+  def getAllTags(self):
+    try:
+      self.__cur.execute(f"SELECT * FROM dmel_tags")
+      tags = self.__cur.fetchall()
+      self.__db.commit()
+      return tags
+    except InFailedSqlTransaction:
+                traceback.print_exc()
+                self._cr.rollback()
+                pass

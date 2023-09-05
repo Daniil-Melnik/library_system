@@ -130,8 +130,15 @@ def update_book_file(book_id):
 @admin.route("/show_card/<book_id>")
 def show_card(book_id):
   _book = dbase.getBook(book_id)
-  print (_book)
-  return render_template('admin/book_card.html', hesh = _hesh, title="Информация о книге", book = _book)
+  book_tags = dbase.getTagsOfBook(book_id)
+  all_tags = dbase.getAllTags()
+  print (all_tags)
+  tags = []
+  for t in book_tags:
+    for t2 in all_tags:
+      if(t[1] == t2[0]):
+        tags.append(t2[1])
+  return render_template('admin/book_card.html', hesh = _hesh, title="Информация о книге", book = _book, tags = tags)
 
 @admin.route("/download/<book_id>")
 def download(book_id):
