@@ -96,7 +96,7 @@ def update_book(book_id):
   if request.method == "POST":
     dbase.updateBook(book_id, request.form['author'],request.form['title'],request.form['num_pg'], request.form['year'], request.form['discr'])
   books = dbase.getBooks()
-  return redirect(url_for('admin.showList'))
+  return redirect(url_for('admin.show_card', book_id=book_id))
 
 @admin.route("/update_files_form/<book_id>")
 def update_files_form(book_id):
@@ -109,7 +109,12 @@ def update_files(book_id):
   if request.method == "POST":
     dbase.updateFileImg(book_id, request.files['image'])
   books = dbase.getBooks()
-  return redirect(url_for('admin.update_files_form', book_id=book_id))
+  return redirect(url_for('admin.show_card', book_id=book_id))
+
+@admin.route("/show_card/<book_id>")
+def show_card(book_id):
+  _book = dbase.getBook(book_id)
+  return render_template('admin/book_card.html', hesh = _hesh, title="Информация о книге", book = _book)
 
 def login_admin():
   session['admin_logged'] = 1

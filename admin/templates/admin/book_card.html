@@ -1,0 +1,13 @@
+{% extends 'admin/base_admin.html' %}
+
+{% block content %}
+{{ super() }}
+<p><img class="book_image" src="{{ url_for('book_image', book_id = book[0]) }}"><a href="{{ url_for('admin.update_files_form', book_id=book[0]) }}">Изменить</a></p>
+<p>Основная информация: <a href="{{ url_for('admin.update_book_form', book_id=book[0]) }}">Изменить</a></p>
+<p> {{ book[2] }} </p>
+<p> {{ book[1] }} </p>
+<p>Год:{{ book[3] }} </p>
+<p>Кол-во страниц: {{ book[4] }} </p>
+<p>Описание: </p>
+<p>{{ book[5] }}</p>
+{% endblock %}
