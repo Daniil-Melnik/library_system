@@ -2,23 +2,62 @@
 
 {% block content %}
 {{ super() }}
+<p id="adm_title">Карточка администратора</p>
 {% for cat, msg in get_flashed_messages(True) %}
 <div class="flash {{cat}}">{{msg}}</div>
 {% endfor %}
-<p><img class="book_image" src="{{ url_for('book_image', book_id = book[0]) }}"><a href="{{ url_for('admin.update_files_form', book_id=book[0]) }}">Изменить</a></p>
-<p>Основная информация: <a href="{{ url_for('admin.update_book_form', book_id=book[0]) }}">Изменить</a></p>
-<p> {{ book[2] }} </p>
-<p> {{ book[1] }} </p>
-<p>Год:{{ book[3] }} </p>
-<p>Кол-во страниц: {{ book[4] }} </p>
-<p>Описание: </p>
-<p>{{ book[5] }}</p>
-<p>Показывать: {{ book[8] }}</p>
-<p>Файл: <a href="{{ url_for('admin.download', book_id=book[0]) }}">скачать</a> <a href="{{ url_for('admin.update_book_file_form', book_id=book[0]) }}">изменить</a></p>
-<p>Теги: </p><a href="{{ url_for('admin.update_tags', book_id=book[0]) }}">Изменить</a>
-<ul>
-  {% for t in tags %}
-  <li>{{ t }}</li>
-  {% endfor %}
-</ul>
+<div class="adm_card">
+  <div class="main_img">
+    <div class="image_div">
+      <p><img class="book_image" src="{{ url_for('book_image', book_id = book[0]) }}"></p>
+      <a href="{{ url_for('admin.update_files_form', book_id=book[0]) }}">Изменить</a>
+    </div>
+    <div class="main_info">
+      <p>Основная информация:</p>
+      <table class="adm_card_table">
+        <tr>
+          <th class="adm_card_row_1_1">Название</th>
+          <td class="adm_card_row_1_2">{{ book[2] }}</td>
+        </tr>
+        <tr>
+          <th>Автор</th>
+          <td>{{ book[1] }}</td>
+        </tr>
+        <tr>
+          <th>Год издания</th>
+          <td>{{ book[3] }}</td>
+        </tr>
+        <tr>
+          <th>Кол-во страниц</th>
+          <td>{{ book[4] }}</td>
+        </tr>
+        <tr>
+          <th>Показывать</th>
+          {% if book[8] == 1 -%}
+          <td>Да</td>
+          {% else %}
+          <td>Нет</td>
+          {%- endif -%}
+        </tr>
+      </table>
+      <p></p>
+      <div class="book_discription">
+        <h1>Описание: </h1>
+        <p>{{ book[5] }}</p>
+      </div>
+      <a href="{{ url_for('admin.update_book_form', book_id=book[0]) }}">Изменить</a>
+    </div>
+    <div class="adm_tags">
+      <p>Теги <a href="{{ url_for('admin.update_tags', book_id=book[0]) }}">Изменить</a>
+      <ul>
+        {% for t in tags %}
+        <li>{{ t }}</li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+  <div class="adm_file">
+    <p>Файл: <a href="{{ url_for('admin.download', book_id=book[0]) }}">скачать</a> <a id="a1" href="{{ url_for('admin.update_book_file_form', book_id=book[0]) }}">изменить</a></p>
+  </div>  
+</div>
 {% endblock %}

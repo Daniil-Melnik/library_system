@@ -3,15 +3,19 @@
 {% block content %}
 {{ super() }}
 <img src="{{ url_for('book_image', book_id = book[0]) }}">
-<p> {{ book[2] }} </p>
-<p> {{ book[1] }} </p>
-<p>Год:{{ book[3] }}, Кол-во страниц: {{ book[4] }}</p>
-<p>Описание: </p>
-<p>{{ book[5] }}</p>
-<p>Теги: </p>
-<ul>
-  {% for t in tags %}
-  <li>{{ t[1] }}</li>
-  {% endfor %}
-</ul>
+<div>
+    <p> {{ book[2] }} </p>
+    <p> {{ book[1] }} </p>
+    <p>Год:{{ book[3] }}, Кол-во страниц: {{ book[4] }}</p>
+    <p>Описание: </p>
+    <p>{{ book[5] }}</p>
+</div>
+<div>
+    <p>Теги: </p>
+    <ul>
+    {% for t in tags %}
+    <li>{{ t[1] }}</li>
+    {% endfor %}
+    </ul>
+</div>
 {% endblock %}

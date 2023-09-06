@@ -3,16 +3,248 @@ html, body {
 	height: 100%;
 	margin: 0;
 	padding: 0;
+	font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
-.clear {clear: both;}
+.mainmenu {
+	list-style: none;
+	display: flex;
+	height: 50px;
+	margin-top: 0;
+	background-color: #434052;
+}
+
+.menu_el  {
+	margin-left: 20px;
+	margin: auto 20px;
+	vertical-align: middle;
+}
+
+.menu_el a {
+	text-decoration: none;
+	font-size: 25px;
+	color: aliceblue;
+}
+
+.menu_el a:hover {
+	color: #9b98b3;
+}
 
 .content {
 	margin: 10px;
 }
 
+.book_table_adm {
+	font-size: 18px;
+	margin: auto;
+}
+
+.row_1_adm {
+	width: 50px;
+	text-align: center;
+}
+
+.row_2_adm {
+	width: 230px;
+}
+
+.row_3_adm {
+	width: 250px;
+}
+
+.row_3_adm a {
+	text-decoration: none;
+	color: #0011a8;
+}
+
+.row_3_adm a:hover {
+	text-decoration: none;
+	color: #96a1ff;
+}
+
+.row_4_adm {
+	width: 85px;
+	text-align: center;
+}
+
+.row_5_adm {
+	width: 85px;
+	text-align: center;
+}
+
+.row_6_adm {
+	width: 560px;
+}
+
+.row_7_adm {
+	width: 60px;
+}
+
+.row_7_adm a {
+	text-decoration: none;
+	color: #0011a8
+}
+
+.row_7_adm a:hover {
+	text-decoration: none;
+	color: #ff3636
+}
+
+.row_8_adm {
+	width: 30px;
+	text-align: center;
+}
+
+.book_image {
+	max-height: 500px;
+}
+
+.main_img {
+	display: flex;
+}
+
+.image_div {
+	text-align: center;
+}
+
+.image_div a{
+	text-decoration: none;
+	color: #0011a8;
+}
+
+.image_div a:hover {
+	color: #96a1ff;
+}
+
 .text_error {
 	color: #FF4040;
+}
+
+.main_info {
+	margin-left: 50px;
+	text-align: center;
+	max-width: 350px;
+}
+
+.main_info p {
+	font-size: 20px;
+	font-weight: bold;
+	text-align: left;
+}
+
+.main_info a{
+	font-size: 15px;
+	font-weight: lighter;
+	text-decoration: none;
+	color: #0011a8;
+}
+
+.main_info a:hover {
+	color: #96a1ff;
+}
+
+.adm_card_table th{
+	text-align: right;
+}
+
+.adm_card_table td{
+	width: 200px;
+	text-align: right;
+}
+
+.adm_tags {
+	max-width: 400px;
+	margin-left: 50px;
+}
+
+.adm_tags p{
+	font-size: 20px;
+	font-weight: bold;
+}
+
+.adm_tags p a{
+	font-size: 15px;
+	font-weight: lighter;
+	color:#0011a8;
+	text-decoration: none;
+}
+
+.adm_tags p a:hover{
+	font-size: 17px;
+	font-weight: normal;
+	color:#96a1ff;
+}
+
+.adm_file {
+	max-width: 200px;
+}
+
+.flash {
+	padding: 10px;
+	margin-top: 5px;	
+}
+.flash.success {
+    border: 1px solid #21DB56;
+    background: #AEFFC5;
+}
+
+#adm_title {
+	font-size: 25px;
+	font-weight: bold;
+	margin: auto;
+}
+
+.adm_file p{
+	font-size: 20px;
+	font-weight: bold;
+}
+
+.adm_file a {
+	font-size: 20px;
+	text-decoration: none;
+	color: #0011a8;
+	font-weight: bold;
+}
+
+.adm_file a:hover {
+	color: #96a1ff;
+}
+
+#a1 {
+	font-size: 15px;
+	text-decoration: none;
+	color: #0011a8;
+	font-weight: lighter;
+}
+
+#a1:hover {
+	color: #96a1ff;
+}
+
+.adm_tags ul {
+	/* list-style: none; */
+	display: flex;
+}
+
+.adm_tags ul li{
+	margin-left: 25px;
+	text-align: left
+}
+
+.book_discription {
+	max-width: 100%;
+}
+
+.book_discription p {
+	font-size: 17px;
+	font-weight: normal;
+	text-align: justify;
+}
+
+.book_discription h1 {
+	font-size: 20px;
+	font-weight: bold;
+	text-align: left;
 }
 
 .wnd_dlg_back {
@@ -46,77 +278,4 @@ div.login {
 	-webkit-border-radius: 20px;
 	-moz-border-radius: 20px;
 	border-radius: 20px;
-}
-div.login p {
-	margin: 0 0 10px 0;
-}
-div.login p a {
-	color: #777;
-}
-div.login .title {
-	text-align: center;
-	color: #000;
-	font-size: 24px;
-	margin-bottom: 40px;
-}
-.login_input {
-	font-size: 16px;
-	width: 100%;
-	background: #041B40;
-	color: #fff;
-}
-.login_button {
-	color: #444;
-	margin-top: 10px;
-	font-size: 14px;
-	padding: 2px;
-	min-width: 200px
-}
-
-.form-label {
-	display: inline-block;
-	min-width: 100px;
-}
-
-.flash {
-	padding: 10px;
-	color: #444;
-	margin: -30px 0 10px 0;
-}
-.flash.success {
-	border: 1px solid #21DB56;
-	background: #AEFFC5;
-}
-.flash.error {
-	border: 1px solid #FF4343;
-	background: #FF9C9C;
-}
-
-ul.mainmenu {
-	list-style: none;
-	background: #fafdd1;
-	height: 40px;
-	margin: 0;
-	padding: 0;
-	color: #444;
-	font-size: 20px;
-	overflow: hidden;
-}
-ul.mainmenu li {
-	float: left;
-	margin: 8px 40px 0 50px;
-}
-ul.mainmenu li.last {float: right;}
-
-ul.mainmenu li a {
-	color: #444;
-	text-decoration: none;
-}
-ul.mainmenu li a:hover {
-	color: #777;
-}
-
-.book_image {
-	width: 320px;
-	height: 500px;
 }
