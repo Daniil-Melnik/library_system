@@ -4,7 +4,9 @@
 {{ super() }}
 <form  action="{{ url_for('.update_files', book_id = book_id) }}" method="POST" enctype="multipart/form-data" >
     <img class="book_image" src="{{ url_for('book_image', book_id = book[0]) }}">
-    <p><input type="file" name="image">
-    <p><input type="submit"  value="Изменить"/>
+    <div class="adm_upd-file_btn">
+        <p><input type="file" name="image">
+        <p><input type="submit"  value="Изменить"/>
+    </div>
 </form>
 {% endblock %}

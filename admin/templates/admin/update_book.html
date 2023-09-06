@@ -3,12 +3,35 @@
 {% block content %}
 {{ super() }}
 <form  action="{{ url_for('.update_book', book_id = book_id) }}" method="POST" enctype="multipart/form-data" >
-  <p><input type="text" name="author" value="{{ book[1] }}">
-  <p><input type="text" name="title" value="{{ book[2] }}">
-  <p><input type="text" name="year" value="{{ book[3] }}">
-  <p><input type="text" name="num_pg" value="{{ book[4] }}">
-  <p><textarea name="discr" cols="25" rows="5">{{ book[5] }}</textarea>
-  <p><input type="checkbox" name="is_open" checked></p>
-  <p><input type="submit"  value="Изменить"/>
+  <div>
+    <div class="adm_main_upd">
+      <div class="adm_main_info_upd">
+        <table class="adm_update_main_table">
+          <tr>
+            <th>Автор:</th>
+            <td><input type="text" name="author" value="{{ book[1] }}"></td>
+          </tr>
+          <tr>
+            <th>Название:</th>
+            <td><input type="text" name="title" value="{{ book[2] }}"></td>
+          </tr>
+          <tr>
+            <th>Год издания:</th>
+            <td><input id="adm_int_input" type="text" name="year" value="{{ book[3] }}"></td>
+          </tr>
+          <tr>
+            <th>Кол-во страниц:</th>
+            <td><input id="adm_int_input" class="glow-on-hover" type="text" name="num_pg" value="{{ book[4] }}"></td>
+          </tr>
+        </table>
+        <p class="adm_check"><label for="is_open">Показывать  </label><input type="checkbox" name="is_open" checked></p></td></p>
+      </div>
+      <div class="adm_update_discr">
+        <p id="adm_check_discr_title">Описание:</p>
+        <textarea id="adm_update_textarea" name="discr" cols="25" rows="5">{{ book[5] }}</textarea>
+      </div>
+    </div>
+    <input id="adm_chng_subm" type="submit"  value="Изменить"/>
+  </div>
 </form>
 {% endblock %}

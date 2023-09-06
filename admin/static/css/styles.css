@@ -279,3 +279,83 @@ div.login {
 	-moz-border-radius: 20px;
 	border-radius: 20px;
 }
+
+
+.adm_update_main_table{
+	margin-left: 20px;
+}
+
+.adm_update_main_table th{
+	height: 50px;
+	text-align: left;
+	font-size: 20px;
+}
+
+.adm_update_main_table td{
+	height: 50px;
+}
+
+.adm_update_main_table td input{
+	height: 25px;
+	font-size: 20px;
+	width: 400px;
+	background:rgba(216, 203, 245 , 0.2);
+	border: 1px solid silver;
+	border-radius: 5px;
+}
+
+.adm_check{
+	font-size: 20px;
+	font-weight: bold;
+	margin-left: 25px;
+}
+
+.adm_check input{
+	margin-left: 30px;
+}
+
+.adm_update_discr{
+	margin: auto;
+}
+
+.adm_update_discr p{
+	font-size: 20px;
+	font-weight: bold;
+}
+
+.adm_update_discr textarea{
+	width: 600px;
+	height: 250px;
+	background: rgba(216, 203, 245 , 0.2);
+	border-radius: 5px;
+	font-size: 15px;
+	font-weight: lighter;
+}
+
+#adm_int_input {
+	height: 25px;
+	font-size: 20px;
+	width: 70px;
+}
+
+.adm_main_upd {
+	display: flex;
+}
+
+#adm_chng_subm {
+	width: 120px;
+	height: 35px;
+	background: rgba(88, 74, 117, 0.2);
+	border-radius: 5px;
+	border: 0;
+	font-size: 17px;
+	margin-left: 45%;
+	margin-top: 15px;
+}
+
+#adm_chng_subm:hover {
+	color: #0011a8;
+	background-color: #96a1ff;
+	transition: 0.5s;
+}
+
