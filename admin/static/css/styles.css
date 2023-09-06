@@ -359,3 +359,25 @@ div.login {
 	transition: 0.5s;
 }
 
+.adm_upd-file_btn {
+	width: 100%;
+	display: flex;
+	background-color: #0011a8;
+}
+
+.adm_img_file {
+	font-size: 17px;
+	margin-left: 47%;
+	margin-top: 15px;
+}
+
+.adm_img_file_subm {
+	font-size: 17px;
+	margin-left: 49%;
+	margin-top: 15px;
+}
+
+.book_image_1 {
+	max-height: 500px;
+	margin-left: 40%;
+}
