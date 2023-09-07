@@ -51,8 +51,8 @@ def books():
   print (_books)
   return render_template('books.html', title="Книги", menu=hesh, books = _books)
 
-@app.route("/download/<book_id>/<template>")
-def download(book_id, template):
+@app.route("/download/<book_id>")
+def download(book_id):
   book = dbase.getBook(book_id)
   current_path = os.getcwd()
   download_name = book[2].lower().replace(" ", "_") + ".pdf"
@@ -73,7 +73,7 @@ def download(book_id, template):
     flash("Файл " + download_name + " сохранён в " + dir, "success")
   if not book:
     abort(404)
-  return render_template(template, menu = hesh, title="Книги", books=_books)
+  return render_template('book_card.html', menu = hesh, title="Книги", book=book)
 
 @app.route("/book_image/<book_id>")
 def book_image(book_id):
@@ -101,8 +101,11 @@ def show_card(book_id):
     for t2 in all_tags:
       if(t[1] == t2[0]):
         tags.append(t2)
-  return render_template('book_card.html', menu = hesh, title="Книги", book = _book, tags = tags)
+  return render_template('book_card.html', menu = hesh, title="Информация о книге", book = _book, tags = tags)
 
+@app.route("/show_image/<book_id>")
+def show_image(book_id):
+  return book_image(book_id)
 
 if __name__ == "__main__":
   app.run(debug = True)

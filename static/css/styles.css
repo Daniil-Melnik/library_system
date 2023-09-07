@@ -49,7 +49,11 @@ div.content {
     margin: 10px;
 }
 
-.flash {padding: 10px;}
+.flash {
+    padding: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
 .flash.success {
     border: 1px solid #21DB56;
     background: #AEFFC5;
@@ -89,4 +93,51 @@ div.content {
 #row_6 {
     width: 650px;
 }
+
+.main_card_info {
+    display: flex;
+}
+
+.book_card_img {
+    max-height: 500px;
+}
+
+.main_info_table{
+    margin-left: 50px;
+}
+
+.main_info_table th{
+    height: 30px;
+    text-align: right;
+    width: 200px;
+}
+
+.main_info_table td{
+    height: 30px;
+    text-align: center;
+    width: 250px;
+}
+
+.card_discription {
+    margin-left: 100px;
+}
+
+.card_discription h1 {
+    margin: 0;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.text_disription{
+    font-size: 17px;
+    font-weight: lighter;
+}
+
+.main_info p{
+    margin-left: 135px;
+    margin-top: 0;
+    font-size: 20px;
+    font-weight: bold;
+}
+
 
