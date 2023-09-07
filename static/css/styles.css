@@ -59,4 +59,34 @@ div.content {
     background: #FF9C9C;
 }
 
+.books_table tr{
+    height: 25px;
+}
+
+#row_1 {
+    width: 50px;
+    text-align: center;
+}
+
+#row_2 {
+    width: 250px;
+}
+
+#row_3 {
+    width: 300px;
+}
+
+#row_4{
+    width: 80px;
+    text-align: center;
+}
+
+#row_5 {
+    width: 80px;
+    text-align: center;
+}
+
+#row_6 {
+    width: 650px;
+}
 
