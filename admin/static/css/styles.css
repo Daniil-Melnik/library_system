@@ -154,6 +154,7 @@ html, body {
 
 .adm_tags {
 	max-width: 400px;
+	max-height: 500px;
 	margin-left: 50px;
 }
 
@@ -380,4 +381,82 @@ div.login {
 .book_image_1 {
 	max-height: 500px;
 	margin-left: 40%;
+}
+
+.adm_upd_tags_id {
+	width: 50px;
+	height: 30px;
+	text-align: center;
+}
+
+.adm_upd_tags_tag {
+	width: 250px;
+	height: 30px;
+	text-align: center;
+}
+
+.adm_upd_tags {
+	font-size: 17px;
+	margin-left: 80px;
+}
+
+.adm_upd_tags a {
+	color: #0011a8;
+	text-decoration: none;
+}
+
+.adm_upd_tags a:hover {
+	color: #FF4040;
+	text-decoration: none;
+}
+
+.adm_upd_tag_main{
+	display: flex;
+}
+
+.adm_p{
+	font-size: 25px;
+	font-weight: bold;
+	margin-left: auto;
+}
+
+.adm_chng_tag_form{
+	text-align: center;
+	margin-left: 700px;
+	margin-top: 20px;
+	position: fixed;
+	background: rgba(164, 133, 229, 0.03);
+	width: 500px;
+	height: 200px;
+	border-radius: 5px;
+}
+
+.adm_chng_tag_form p{
+	font-size: 25px;
+	font-weight: bold;
+}
+
+.adm_chng_tag_form select{
+	width: 300px;
+	height: 30px;
+	font-size: 17px;
+	border: 0;
+	background: rgba(164, 133, 229, 0.2);
+	border-radius: 5px;
+}
+
+.adm_tag_subm{
+	width: 140px;
+	height: 40px;
+	background: rgba(88, 74, 117, 0.2);
+	border-radius: 5px;
+	border: 0;
+	font-size: 20px;
+	margin-bottom: 5px;
+}
+
+.adm_tag_subm:hover{
+	background: rgba(164, 133, 229, 0.2);
+	color: #0011a8;
+	transition: 0.8s;
 }

@@ -2,28 +2,31 @@
 
 {% block content %}
 {{ super() }}
-
-<table>
-  <tr>
-    <th align="center">id</td>
-    <th align="center">Тег</td>
-  </tr>
-  {% for t in tags %}
-  <tr>
-    <td align="center">{{ t[0] }}</td>
-    <td align="center">{{ t[1] }}</td>
-    <td><a href="{{ url_for('admin.delete_tag_book', tag_id=t[0], book_id=book[0]) }}">Удалить</a></td>
-  </tr>
-  {% endfor %}
-</table>
- 
-<form  action="{{ url_for('admin.add_tag_book', book_id=book[0]) }}" method="POST" enctype="multipart/form-data" >
-  <select name="tag_id">
-    {% for a_t in all_tags %}
-    <option value="{{ a_t[0] }}">{{ a_t[1] }}</option>
+<p class="adm_p">Редактирование тегов книги</p>
+<div class="adm_upd_tag_main">
+  <table class="adm_upd_tags">
+    <tr class="table_head">
+      <th align="center">id</td>
+      <th align="center">Тег</td>
+    </tr>
+    {% for t in tags %}
+    <tr>
+      <td class="adm_upd_tags_id" align="center">{{ t[0] }}</td>
+      <td class="adm_upd_tags_tag" align="center">{{ t[1] }}</td>
+      <td><a href="{{ url_for('admin.delete_tag_book', tag_id=t[0], book_id=book[0]) }}">Удалить</a></td>
+    </tr>
     {% endfor %}
-  </select>
-  <p><input type="submit"  value="Добавить"/>
-</form>
+  </table>
+  
+  <form class="adm_chng_tag_form"  action="{{ url_for('admin.add_tag_book', book_id=book[0]) }}" method="POST" enctype="multipart/form-data" >
+    <p>Добавить тег</p>
+    <select name="tag_id">
+      {% for a_t in all_tags %}
+      <option value="{{ a_t[0] }}">{{ a_t[1] }}</option>
+      {% endfor %}
+    </select>
+    <p><input class="adm_tag_subm" type="submit"  value="Добавить"/>
+  </form>
+</div>
 {% endblock %}
 
