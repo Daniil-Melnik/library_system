@@ -49,7 +49,7 @@ html, body {
 }
 
 .row_3_adm {
-	width: 250px;
+	width: 300px;
 }
 
 .row_3_adm a {
@@ -528,4 +528,75 @@ div.login {
 
 .adm_file_book p{
 	margin-left: 50px;
+}
+
+.adm_tag_main_table{
+	font-size: 17px;
+	margin-left: 25px;
+}
+
+.adm_tag_main_table td{
+	height: 20px;
+}
+
+#adm_row_tag_1 {
+	width: 30px;
+	height: 20px;
+}
+
+#adm_row_tag_2 {
+	width: 450px;
+	height: 20px;
+}
+
+#adm_row_tag_3 {
+	width: 150px;
+	height: 20px;
+}
+
+.adm_tag_main_table a {
+	color: #0011a8;
+	text-decoration: none;
+}
+
+.adm_tag_main_table a:hover {
+	color: #FF4040;
+	text-decoration: none;
+}
+
+.adm_add_tag_form {
+	text-align: center;
+	margin-left: 700px;
+	margin-top: 20px;
+	position: fixed;
+	background: rgba(164, 133, 229, 0.03);
+	width: 300px;
+	height: 130px;
+	border-radius: 5px;
+}
+
+.adm_add_tag_form p {
+	font-size: 20px;
+	font-weight: bold;
+	margin-top: 5px;
+}
+
+.adm_add_tag_form input {
+	background: rgba(99, 73, 156, 0.2);
+	border: 0;
+	border-radius: 5px;
+}
+
+#adm_tag_add_btn{
+	width: 100px;
+	height: 25px;
+	background: rgba(88, 74, 117, 0.2);
+	border: 0;
+	border-radius: 5px;
+}
+
+#adm_tag_add_btn:hover{
+	background: rgba(164, 133, 229, 0.2);
+	color: #0011a8;
+	transition: 0.1s;
 }

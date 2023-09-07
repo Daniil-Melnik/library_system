@@ -2,22 +2,25 @@
 
 {% block content %}
 {{ super() }}
-<p>Теги: </p>
-<table>
-  <tr>
-    <th align="center">id</td>
-    <th align="center">Тег</td>
-  </tr>
-  {% for t in tags %}
-  <tr>
-    <td align="center">{{ t[0] }}</td>
-    <td align="center">{{ t[1] }}</td>
-    <td><a href="{{ url_for('admin.delete_tag', tag_id=t[0]) }}">Удалить</a></td>
-  </tr>
-  {% endfor %}
-</table>
-<form  action="{{ url_for('admin.add_tag') }}" method="POST" enctype="multipart/form-data" >
-  <p><input type="text" name="tag">
-  <p><input type="submit"  value="Добавить"/>
-</form>
+<p id="adm_title">Теги</p>
+<div class="adm_main_upd">
+  <table class="adm_tag_main_table">
+    <tr>
+      <th id="adm_row_tag_1" align="center">id</td>
+      <th id="adm_row_tag_2" align="center">Тег</td>
+    </tr>
+    {% for t in tags %}
+    <tr>
+      <td align="center">{{ t[0] }}</td>
+      <td align="center">{{ t[1] }}</td>
+      <td><a href="{{ url_for('admin.delete_tag', tag_id=t[0]) }}">Удалить</a></td>
+    </tr>
+    {% endfor %}
+  </table>
+  <form class="adm_add_tag_form" action="{{ url_for('admin.add_tag') }}" method="POST" enctype="multipart/form-data" >
+    <p>Добавить тег</p>
+    <p><input type="text" name="tag">
+    <p><input id="adm_tag_add_btn" type="submit"  value="Добавить"/>
+  </form>
+</div>
 {% endblock %}
