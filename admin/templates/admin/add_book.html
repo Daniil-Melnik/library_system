@@ -2,15 +2,47 @@
 
 {% block content %}
 {{ super() }}
-<form  action="{{ url_for('.add_book') }}" method="POST" enctype="multipart/form-data" >
-  <p><input type="text" name="author">
-  <p><input type="text" name="title">
-  <p><input type="text" name="year">
-  <p><input type="text" name="num_pg">
-  <p><textarea name="discr" cols="25" rows="5"></textarea>
-  <p><input type="file" name="image">
-  <p><input type="file" name="file"></p>
-  <p><input type="checkbox" name="is_open" checked></p>
-  <p><input type="submit"  value="Добавить"/>
-</form>
+<p id="adm_title">Добавить книгу</p>
+<form action="{{ url_for('.add_book') }}" method="POST" enctype="multipart/form-data" >
+  <div class="adm_book_upd_form">
+    <div>
+      <table class="adm_update_main_table">
+        <tr>
+          <th>Автор:</th>
+          <td><input type="text" name="author"></td>
+        </tr>
+        <tr>
+          <th>Название:</th>
+          <td><input type="text" name="title"></td>
+        </tr>
+        <tr>
+          <th>Год издания:</th>
+          <td><input id="adm_int_input" type="text" name="year"></td>
+        </tr>
+        <tr>
+          <th>Кол-во страниц:</th>
+          <td><input id="adm_int_input" type="text" name="num_pg"></td>
+        </tr>
+      </table>
+      <p class="adm_check">Показывать: <input type="checkbox" name="is_open" checked></p>
+      <p>Описание:</p>
+      <p><textarea id="adm_update_textarea" name="discr" cols="25" rows="5"></textarea>
+    </div>
+    <div class="adm_file_book">
+      <p>Добавление файлов:</p>
+      <table id="adm_file_book_table">
+        <tr>
+          <td>Файл изображения:</td>
+          <td><input type="file" name="image"></td>
+        </tr>
+        <tr>
+          <td>Файл книги:</td>
+          <td><input type="file" name="file"></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+    <input id="adm_add_fil_subm" type="submit"  value="Добавить"/>
+  </form>
+
 {% endblock %}

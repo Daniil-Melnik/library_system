@@ -192,7 +192,9 @@ html, body {
 #adm_title {
 	font-size: 25px;
 	font-weight: bold;
-	margin: auto;
+	margin-left: 20px;
+	margin-bottom: 10px;
+	margin-top: 10px;
 }
 
 .adm_file p{
@@ -471,3 +473,59 @@ div.login {
 	font-weight: bold;
 }
 
+.adm_book_upd_form{
+	display: flex;
+}
+
+.adm_book_upd_form p{
+	font-size: 20px;
+	font-weight: bold;
+	margin-left: 25px;
+}
+
+.adm_book_upd_form textarea{
+	width: 600px;
+	height: 250px;
+	background: rgba(216, 203, 245 , 0.2);
+	border-radius: 5px;
+	font-size: 20px;
+	font-weight: lighter;
+}
+
+#adm_file_book_table {
+	font-size: 20px;
+	margin-left: 50px;
+}
+
+#adm_file_book_table td input{
+	margin-left: 10px;
+}
+
+.adm_file_book {
+	margin-left: 150px;
+	text-align: center;
+}
+
+.adm_file_book input {
+	margin-top: 5px;
+}
+
+#adm_add_fil_subm{
+	width: 120px;
+	height: 30px;
+	background: rgba(88, 74, 117, 0.2);
+	border: 0;
+	border-radius: 5px;
+	font-size: 17px;
+	margin-left: 48%;
+}
+
+#adm_add_fil_subm:hover{
+	background: rgba(164, 133, 229, 0.2);
+	color: #0011a8;
+	transition: 0.8s;
+}
+
+.adm_file_book p{
+	margin-left: 50px;
+}
