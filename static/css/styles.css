@@ -140,4 +140,23 @@ div.content {
     font-weight: bold;
 }
 
+.card_tags p {
+    font-size: 20px;
+    font-weight: bold;
+    max-width: 90%;
+}
+
+.card_tags ul {
+    display: flex;
+    list-style: none;
+}
+
+.card_tags li {
+    background: rgba(181, 181, 181, 0.2);
+    border-radius: 5px;
+    margin-left: 25px;
+    height: 20px;
+    padding: 5px;
+}
+
 
