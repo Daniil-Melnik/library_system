@@ -460,3 +460,14 @@ div.login {
 	color: #0011a8;
 	transition: 0.8s;
 }
+
+.adm_upd_book_file_main{
+	text-align: center;
+	margin-top: 15%;
+}
+
+.adm_upd_book_file_main p{
+	font-size: 35px;
+	font-weight: bold;
+}
+

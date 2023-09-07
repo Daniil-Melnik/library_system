@@ -2,8 +2,11 @@
 
 {% block content %}
 {{ super() }}
-<form  action="{{ url_for('.update_book_file', book_id = book_id) }}" method="POST" enctype="multipart/form-data" >
-    <p><input type="file" name="file">
-    <p><input type="submit"  value="Изменить"/>
-</form>
+<div class="adm_upd_book_file_main">
+  <p>Изменить файл книги</p>
+  <form class="adm_upd_book_file_form" action="{{ url_for('.update_book_file', book_id = book_id) }}" method="POST" enctype="multipart/form-data" >
+      <p><input type="file" name="file">
+      <p><input type="submit"  value="Изменить"/>
+  </form>
+</div>
 {% endblock %}
