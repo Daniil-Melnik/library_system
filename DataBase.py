@@ -135,6 +135,42 @@ class DataBase:
                 traceback.print_exc()
                 self._cr.rollback()
                 pass
+  def getTag(self, tag_id):
+    try:
+      self.__cur.execute("SELECT * FROM dmel_tags WHERE id = %s", [tag_id])
+      tag = self.__cur.fetchone()
+      self.__db.commit()
+      return tag
+    except InFailedSqlTransaction:
+                traceback.print_exc()
+                self._cr.rollback()
+                pass
+
+  def getBooksByTag(self, tag_id):
+    try:
+      self.__cur.execute("SELECT * FROM dmel_book_tags WHERE tag_id = %s", [tag_id])
+      tags = self.__cur.fetchall()
+      self.__db.commit()
+
+      tag_ids = []
+      for tag in tags:
+          if (int(tag[1]) == int(tag_id)):
+              tag_ids.append(tag[2])
+
+      self.__cur.execute("SELECT * FROM dmel_books")
+      books = self.__cur.fetchall()
+      self.__db.commit()
+
+      used_books = []
+
+      for book in books:
+          if (int(book[0]) in tag_ids):
+              used_books.append(book)
+      return used_books
+    except InFailedSqlTransaction:
+                traceback.print_exc()
+                self._cr.rollback()
+                pass
   
   def addTag(self, tag):
     try:

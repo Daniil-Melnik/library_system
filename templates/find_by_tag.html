@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{{ super() }}
+<div class="adm_main_upd">
+  <form class="adm_add_tag_form" action="{{ url_for('show_tags_1') }}" method="POST" enctype="multipart/form-data" >
+    <select name="tag_id">
+        {% for a_t in tags %}
+        <option value="{{ a_t[0] }}">{{ a_t[1] }}</option>
+        {% endfor %}
+    </select>
+    <p><input id="adm_tag_add_btn" type="submit"  value="Найти"/>
+  </form>
+  <p>Найдено по тегу: {{ tag[1] }}</p>
+  <table>
+    {% for book in bookes %}
+    {% if book[8] == 1 %}
+    <tr><td>{{ book[2] }}</td></tr>
+    {% endif %}
+    {% endfor %}
+  </table>
+</div>
+{% endblock %}

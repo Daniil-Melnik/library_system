@@ -1,4 +1,4 @@
-from flask import Flask, abort, flash, make_response, render_template, g
+from flask import Flask, abort, flash, make_response, redirect, render_template, g, request, url_for
 import psycopg2
 import os
 from admin.admin import admin
@@ -9,7 +9,7 @@ app = Flask(__name__)
 
 app.config['SECRET_KEY'] = 'home56172'
 
-hesh = [{"title": "Главная", "url": "/"}, {"title": "Книги", "url": "/books"}]
+hesh = [{"title": "Главная", "url": "/"}, {"title": "Книги", "url": "/books"}, {"title": "Найти по тегу", "url": "/show_tags/0"}]
 
 app.register_blueprint(admin, url_prefix='/admin')
 
@@ -106,6 +106,29 @@ def show_card(book_id):
 @app.route("/show_image/<book_id>")
 def show_image(book_id):
   return book_image(book_id)
+
+
+@app.route("/show_tags_1", methods = ["POST", "GET"])
+def show_tags_1():
+  tag_id = request.form.get('tag_id')
+  all_tags = dbase.getAllTags()
+  books_1 = []
+  print (tag_id)
+  if (int(tag_id) == 0):
+    books_1 = dbase.getBooks()
+  return redirect(url_for('show_tags', tag_id=tag_id))
+
+@app.route("/show_tags/<tag_id>")
+def show_tags(tag_id):
+  all_tags = dbase.getAllTags()
+  tag = dbase.getTag(tag_id)
+  books_1 = []
+  print (tag_id)
+  if (int(tag_id) == 0):
+    books_1 = dbase.getBooks()
+  else:
+    books_1 = dbase.getBooksByTag(tag_id)
+  return render_template('find_by_tag.html', menu = hesh, title="Найти по тегу", tags = all_tags, bookes = books_1, tag_id = tag_id, tag = tag)
 
 # comment to create db
 if __name__ == "__main__":
