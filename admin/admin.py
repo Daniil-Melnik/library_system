@@ -7,6 +7,7 @@ from DataBase import DataBase
 admin = Blueprint('admin', __name__, template_folder='templates', static_folder='static')
 
 _hesh = [
+        {"url": 'index', "title": 'Витрина'},
         {"url": '.showList', "title": 'Книги'},
         {"url": '.addBook_form', "title": 'Добавить книгу'},
         {"url": '.show_tags', "title": 'Теги'}
