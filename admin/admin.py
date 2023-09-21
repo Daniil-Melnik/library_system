@@ -146,7 +146,6 @@ def show_card(book_id):
   _book = dbase.getBook(book_id)
   book_tags = dbase.getTagsOfBook(book_id)
   all_tags = dbase.getAllTags()
-  print (all_tags)
   tags = []
   for t in book_tags:
     for t2 in all_tags:
@@ -186,13 +185,20 @@ def update_tags(book_id):
   _book = dbase.getBook(book_id)
   book_tags = dbase.getTagsOfBook(book_id)
   all_tags = dbase.getAllTags()
-  print (all_tags)
   tags = []
+  unused_tags = []
+  index_used_tags = []
   for t in book_tags:
     for t2 in all_tags:
       if(t[1] == t2[0]):
         tags.append(t2)
-  return render_template('admin/update_tags.html', hesh = _hesh, title="Редактирование тегов", book = _book, tags = tags, all_tags = all_tags)
+  for el in book_tags:
+    index_used_tags.append(el[1])
+  for i in range (len(all_tags)):
+    if (all_tags[i][0] not in index_used_tags):
+      unused_tags.append(all_tags[i])
+
+  return render_template('admin/update_tags.html', hesh = _hesh, title="Редактирование тегов", book = _book, tags = tags, all_tags = unused_tags)
 
 
 @admin.route("/delete_tag_book/<tag_id>/<book_id>")
@@ -205,7 +211,14 @@ def add_tag_book(book_id):
   if request.method == "POST":
     book_id = book_id
     tag_id = request.form.get('tag_id')
-    dbase.addTagBook(book_id, tag_id)
+    add_cond = True
+    print (book_id)
+    print (tag_id)
+    for el in dbase.getTagsOfBook(book_id):
+      if ((int(el[2]) == int(book_id)) and (int(el[1]) == int(tag_id))):
+        add_cond=False
+    if add_cond:
+      dbase.addTagBook(book_id, tag_id)
   return redirect(url_for('admin.update_tags', book_id=book_id))
 
 
