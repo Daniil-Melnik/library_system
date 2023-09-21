@@ -102,6 +102,7 @@ div.content {
     max-height: 500px;
 }
 
+
 .main_info_table{
     margin-left: 50px;
 }
@@ -115,7 +116,7 @@ div.content {
 .main_info_table td{
     height: 30px;
     text-align: center;
-    width: 250px;
+    width: 300px;
 }
 
 .card_discription {
@@ -138,6 +139,10 @@ div.content {
     margin-top: 0;
     font-size: 20px;
     font-weight: bold;
+}
+
+.main_info{
+    min-width: 500px;
 }
 
 .card_tags p {
