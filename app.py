@@ -107,9 +107,9 @@ def show_card(book_id):
 def show_image(book_id):
   return book_image(book_id)
 
-#comment to create db
+# comment to create db
 if __name__ == "__main__":
   app.run(debug = True)
 
-#umcomment to create db
+# umcomment to create db
 # create_db()
