@@ -79,7 +79,7 @@ div.content {
 }
 
 #table_light_div {
-    margin-left: 10%;
+    margin-left: 13%;
 }
 
 .adm_main_upd p {
@@ -152,6 +152,32 @@ h_2 {
     font-weight: bold;
 }
 
+h_3 {
+    font-family: 'Arial';
+    font-size: 20px;
+}
+
+#selection {
+	width: 200px;
+	height: 25px;
+	font-size: 19px;
+    margin: 0;
+}
+
+#adm_tag_add_btn{
+	width: 70px;
+	height: 25px;
+	background: rgba(88, 74, 117, 0.2);
+	border: 0;
+	border-radius: 5px;
+}
+
+#adm_tag_add_btn:hover{
+	background: rgba(35, 92, 8, 0.2);
+	color: #235c08;
+	transition: 0.1s;
+}
+
 #row_6 {
     width: 650px;
     text-align: justify;
@@ -211,6 +237,7 @@ h_2 {
 .text_disription{
     font-size: 17px;
     font-weight: lighter;
+    text-align: justify;
 }
 
 .main_info p{

@@ -3,14 +3,14 @@
 {% block content %}
 {{ super() }}
 <div class="adm_main_upd">
-  <p>Выберите тэг
+  <p><h_3>Выберите тег</h_3>
   <form class="adm_add_tag_form" action="{{ url_for('show_tags_1') }}" method="POST" enctype="multipart/form-data" >
-    <select name="tag_id">
+    <select name="tag_id" id="selection">
         {% for a_t in tags %}
         <option value="{{ a_t[0] }}">{{ a_t[1] }}</option>
         {% endfor %}
     </select>
-    <input id="adm_tag_add_btn" type="submit"  value="Найти"/>
+    <p><input id="adm_tag_add_btn" type="submit"  value="Найти"/>
   </form>
   <p><h_1>Найдено по тегу: </h_1><h_2>{{ tag[1] }}</h_2></p>
   <div id="table_light_div">
@@ -28,7 +28,6 @@
         <td id="row_2_light">{{ b[1] }}
         <td id="row_3_light"><a href="{{ url_for('show_card', book_id=b[0]) }}">{{ b[2] }}</a>
         <td id="row_4_light">{{ b[3] }}
-        <td><a href="{{ url_for('download', book_id=b[0], template='books.html') }}">скачать</a>
       </tr>
       {% endif %}
       {% endfor %}
