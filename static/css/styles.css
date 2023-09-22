@@ -72,15 +72,61 @@ div.content {
     text-align: center;
 }
 
+.books_table td{
+    /* border-bottom: 1px solid black; */
+    border-top: 1px solid black;
+    border-collapse: collapse;
+}
+
+#table_light_div {
+    margin-left: 10%;
+}
+
+.adm_main_upd p {
+    text-align: center;
+}
+
+.adm_add_tag_form {
+	text-align: center;
+}
+
+#row_1_1 {
+    width: 150px;
+    vertical-align: middle;
+}
+
 #row_2 {
     width: 250px;
+    text-align: center;
 }
 
 #row_3 {
     width: 300px;
+    text-align: center;
 }
 
 #row_4{
+    width: 80px;
+    text-align: center;
+}
+
+#row_1_light {
+    width: 70px;
+    text-align: center;
+    text-align: center;
+}
+
+#row_2_light {
+    width: 350px;
+    text-align: center;
+}
+
+#row_3_light {
+    width: 600px;
+    text-align: center;
+}
+
+#row_4_light{
     width: 80px;
     text-align: center;
 }
@@ -90,8 +136,41 @@ div.content {
     text-align: center;
 }
 
+#row_7 {
+    margin-left: 5px;
+}
+
+h_1 {
+    font-family: 'Arial';
+    font-size: 15px;
+}
+
+h_2 {
+    font-family: 'Arial';
+    font-size: 20px;
+    font-style: italic;
+    font-weight: bold;
+}
+
 #row_6 {
     width: 650px;
+    text-align: justify;
+}
+
+#row_6_x {
+    width: 650px;
+    text-align: center;
+}
+
+#table_img {
+    max-height: 300px;
+    margin-top: 5px;
+    margin-bottom: 0;
+}
+
+#table_img_div {
+    text-align: center;
+    vertical-align: middle;
 }
 
 .main_card_info {

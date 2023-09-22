@@ -127,7 +127,7 @@ class DataBase:
     
   def getAllTags(self):
     try:
-      self.__cur.execute(f"SELECT * FROM dmel_tags")
+      self.__cur.execute(f"SELECT * FROM dmel_tags ORDER BY id")
       tags = self.__cur.fetchall()
       self.__db.commit()
       return tags

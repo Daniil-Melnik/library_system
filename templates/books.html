@@ -7,25 +7,27 @@
 {% for cat, msg in get_flashed_messages(True) %}
 <div class="flash {{cat}}">{{msg}}</div>
 {% endfor %}
-<table class="books_table">
+<table class="books_table" cellspacing=0>
   <tr>
     <th id="row_1">id</th>
+    <th id="row_1_1">Обложка</th>
     <th id="row_2">Автор</th>
     <th id="row_3">Название</th>
     <th id="row_4">Год издания</th>
     <th id="row_5">Кол-во страниц</th>
-    <th id="row_6">Описание</th>
+    <th id="row_6_x">Описание</th>
   </tr>
   {% for b in books %}
   {% if b[8] == 1 %}
   <tr>
     <td id="row_1">{{ b[0] }}
+    <td><div id="table_img_div"><img id="table_img" src="{{ url_for('book_image', book_id = b[0]) }}"></div>
     <td id="row_2">{{ b[1] }}
     <td id="row_3"><a href="{{ url_for('show_card', book_id=b[0]) }}">{{ b[2] }}</a>
     <td id="row_4">{{ b[3] }}
     <td id="row_5">{{ b[4] }}
-    <td id="row_6">{{ b[5] [:70] + "..." }}
-    <td><a href="{{ url_for('download', book_id=b[0], template='books.html') }}">скачать</a>
+    <td id="row_6">{{ b[5] }}
+    <td id="row_7"><a href="{{ url_for('download', book_id=b[0], template='books.html') }}">скачать</a>
   </tr>
   {% endif %}
   {% endfor %}

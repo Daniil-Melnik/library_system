@@ -3,21 +3,36 @@
 {% block content %}
 {{ super() }}
 <div class="adm_main_upd">
+  <p>Выберите тэг
   <form class="adm_add_tag_form" action="{{ url_for('show_tags_1') }}" method="POST" enctype="multipart/form-data" >
     <select name="tag_id">
         {% for a_t in tags %}
         <option value="{{ a_t[0] }}">{{ a_t[1] }}</option>
         {% endfor %}
     </select>
-    <p><input id="adm_tag_add_btn" type="submit"  value="Найти"/>
+    <input id="adm_tag_add_btn" type="submit"  value="Найти"/>
   </form>
-  <p>Найдено по тегу: {{ tag[1] }}</p>
-  <table>
-    {% for book in bookes %}
-    {% if book[8] == 1 %}
-    <tr><td>{{ book[2] }}</td></tr>
-    {% endif %}
-    {% endfor %}
-  </table>
+  <p><h_1>Найдено по тегу: </h_1><h_2>{{ tag[1] }}</h_2></p>
+  <div id="table_light_div">
+    <table class="books_table_light">
+      <tr>
+        <th id="row_1_light">id</th>
+        <th id="row_2_light">Автор</th>
+        <th id="row_3_light">Название</th>
+        <th id="row_4_light">Год издания</th>
+      </tr>
+      {% for b in books %}
+      {% if b[8] == 1 %}
+      <tr>
+        <td id="row_1_light">{{ b[0] }}
+        <td id="row_2_light">{{ b[1] }}
+        <td id="row_3_light"><a href="{{ url_for('show_card', book_id=b[0]) }}">{{ b[2] }}</a>
+        <td id="row_4_light">{{ b[3] }}
+        <td><a href="{{ url_for('download', book_id=b[0], template='books.html') }}">скачать</a>
+      </tr>
+      {% endif %}
+      {% endfor %}
+    </table>
+    </div>
 </div>
 {% endblock %}
