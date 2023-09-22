@@ -73,7 +73,7 @@ def download(book_id):
     flash("Файл " + download_name + " сохранён в " + dir, "success")
   if not book:
     abort(404)
-  return render_template('book_card.html', menu = hesh, title="Книги", book=book)
+  return redirect (url_for('show_card', book_id=book_id))
 
 @app.route("/book_image/<book_id>")
 def book_image(book_id):

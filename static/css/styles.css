@@ -4,6 +4,8 @@ html, body {
     padding: 0;
     height: 100%;
     width: 100%;
+    z-index: -1;
+    position: relative;
 }
 
 a {
@@ -57,6 +59,7 @@ div.content {
 .flash.success {
     border: 1px solid #21DB56;
     background: #AEFFC5;
+    z-index: 10000;
 }
 .flash.error {
     border: 1px solid #FF4343;
