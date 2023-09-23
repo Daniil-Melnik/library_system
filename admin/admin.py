@@ -69,11 +69,14 @@ def logout():
 
 @admin.route('/book_list')
 def showList():
+  if not is_logged():
+    return redirect(url_for('.login'))
   books = dbase.getBooks()
   return render_template('admin/book_list.html', title = "Список книг", hesh = _hesh, books = books)
 
 @admin.route('/add_book', methods = ["POST", "GET"])
 def add_book():
+  
   if request.method == "POST":
     val = 1 if request.form.get('is_open') else 0
     dbase.addBook(request.form['author'],request.form['title'],request.form['num_pg'], request.form['year'], request.form['discr'], request.files['image'], request.files['file'], val)
@@ -81,22 +84,30 @@ def add_book():
 
 @admin.route('/add_book_form')
 def addBook_form():
+  if not is_logged():
+    return redirect(url_for('.login'))
   books = dbase.getBooks()
   return render_template('admin/add_book.html', title = "Добавить книгу", hesh = _hesh, books = books)
 
 @admin.route("/delete_book/<book_id>")
 def delete_book(book_id):
+  if not is_logged():
+    return redirect(url_for('.login'))
   dbase.deleteBook(book_id)
   return redirect(url_for('admin.showList'))
 
 @admin.route("/update_book_form/<book_id>")
 def update_book_form(book_id):
+  if not is_logged():
+    return redirect(url_for('.login'))
   books = dbase.getBooks()
   book = dbase.getBook(book_id)
   return render_template('admin/update_book.html', title = "Редактирование", hesh = _hesh, books = books, book_id=book_id, book=book)
 
 @admin.route("/update_book_file_form/<book_id>")
 def update_book_file_form(book_id):
+  if not is_logged():
+    return redirect(url_for('.login'))
   books = dbase.getBooks()
   book = dbase.getBook(book_id)
   return render_template('admin/update_book_file.html', title = "Редактирование", hesh = _hesh, books = books, book_id=book_id, book=book)
@@ -105,6 +116,8 @@ def update_book_file_form(book_id):
 
 @admin.route("/update_book/<book_id>", methods = ["POST", "GET"])
 def update_book(book_id):
+  if not is_logged():
+    return redirect(url_for('.login'))
   if request.method == "POST":
     val = 1 if request.form.get('is_open') else 0
 
@@ -114,35 +127,47 @@ def update_book(book_id):
 
 @admin.route("/update_files_form/<book_id>")
 def update_files_form(book_id):
+  if not is_logged():
+    return redirect(url_for('.login'))
   books = dbase.getBooks()
   book = dbase.getBook(book_id)
   return render_template('admin/update_files.html', title = "Редактирование", hesh = _hesh, books = books, book_id=book_id, book=book)
 
 @admin.route("/update_files/<book_id>", methods = ["POST", "GET"])
 def update_files(book_id):
+  if not is_logged():
+    return redirect(url_for('.login'))
   if request.method == "POST":
     dbase.updateFileImg(book_id, request.files['image'])
   return redirect(url_for('admin.show_card', book_id=book_id))
 
 @admin.route("/update_book_file/<book_id>", methods = ["POST", "GET"])
 def update_book_file(book_id):
+  if not is_logged():
+    return redirect(url_for('.login'))
   if request.method == "POST":
     dbase.updateFilePdf(book_id, request.files['file'])
   return redirect(url_for('admin.show_card', book_id=book_id))
 
 @admin.route("/add_tag", methods = ["POST", "GET"])
 def add_tag():
+  if not is_logged():
+    return redirect(url_for('.login'))
   if request.method == "POST":
     dbase.addTag(request.form['tag'])
   return redirect(url_for('admin.show_tags'))
 
 @admin.route("/delete_tag/<tag_id>")
 def delete_tag(tag_id):
+  if not is_logged():
+    return redirect(url_for('.login'))
   dbase.deleteTag(tag_id)
   return redirect(url_for('admin.show_tags'))
 
 @admin.route("/show_card/<book_id>")
 def show_card(book_id):
+  if not is_logged():
+    return redirect(url_for('.login'))
   _book = dbase.getBook(book_id)
   book_tags = dbase.getTagsOfBook(book_id)
   all_tags = dbase.getAllTags()
@@ -155,6 +180,8 @@ def show_card(book_id):
 
 @admin.route("/download/<book_id>")
 def download(book_id):
+  if not is_logged():
+    return redirect(url_for('.login'))
   book = dbase.getBook(book_id)
   current_path = os.getcwd()
   download_name = book[2].lower().replace(" ", "_") + ".pdf"
@@ -177,11 +204,15 @@ def download(book_id):
 
 @admin.route("/show_tags")
 def show_tags():
+  if not is_logged():
+    return redirect(url_for('.login'))
   tags = dbase.getAllTags()
   return render_template('admin/tag_page.html', title = "Теги", hesh = _hesh,  tags = tags)
 
 @admin.route("/update_tags/<book_id>")
 def update_tags(book_id):
+  if not is_logged():
+    return redirect(url_for('.login'))
   _book = dbase.getBook(book_id)
   book_tags = dbase.getTagsOfBook(book_id)
   all_tags = dbase.getAllTags()
@@ -203,11 +234,15 @@ def update_tags(book_id):
 
 @admin.route("/delete_tag_book/<tag_id>/<book_id>")
 def delete_tag_book(book_id, tag_id):
+  if not is_logged():
+    return redirect(url_for('.login'))
   dbase.deleteTagBook(book_id, tag_id)
   return redirect(url_for('admin.update_tags', book_id=book_id))
 
 @admin.route("/add_tag_book/<book_id>", methods = ["POST", "GET"])
 def add_tag_book(book_id):
+  if not is_logged():
+    return redirect(url_for('.login'))
   if request.method == "POST":
     book_id = book_id
     tag_id = request.form.get('tag_id')
