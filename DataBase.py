@@ -53,16 +53,14 @@ class DataBase:
                   'VALUES (%s, %s, %s, %s, %s, %s, %s, %s)',
                   (author, title, year, num_pg, discription, binary_file, binary_img, is_open)
                   )
-      print("OK1")
+
       self.__db.commit()
-      print("OK2")
       return True
     except :
       print("Ошибка добавления в БД")
 
   def deleteBook(self, book_id):
     try:
-      print(book_id)
       self.__cur.execute("DELETE FROM dmel_books WHERE id = %s", [book_id])
       self.__db.commit()
       return True
@@ -79,9 +77,7 @@ class DataBase:
       self.__cur.execute('UPDATE dmel_books SET num_pg = %s WHERE id = %s ', (num_pg, book_id))
       self.__cur.execute('UPDATE dmel_books SET discription = %s WHERE id = %s ', (discription, book_id))
       self.__cur.execute('UPDATE dmel_books SET is_open = %s WHERE id = %s ', (is_open, book_id))
-      print("OK1")
       self.__db.commit()
-      print("OK2")
       return True
     except :
       print("Ошибка изменения в БД")
@@ -91,9 +87,7 @@ class DataBase:
       dat = image.read()
       binary_img = psycopg2.Binary(dat)
       self.__cur.execute('UPDATE dmel_books SET image = %s WHERE id = %s ', (binary_img, book_id))
-      print("OK1")
       self.__db.commit()
-      print("OK2")
       return True
     except InFailedSqlTransaction:
                 traceback.print_exc()
@@ -105,9 +99,7 @@ class DataBase:
       dat = file.read()
       binary_file = psycopg2.Binary(dat)
       self.__cur.execute('UPDATE dmel_books SET file = %s WHERE id = %s ', (binary_file, book_id))
-      print("OK1")
       self.__db.commit()
-      print("OK2")
       return True
     except InFailedSqlTransaction:
                 traceback.print_exc()
@@ -188,8 +180,6 @@ class DataBase:
   def deleteTag(self, tag_id):
     try:
       self.__cur.execute("DELETE FROM dmel_tags WHERE id = %s", [tag_id])
-      print("TAG_ID = ")
-      print(tag_id)
       self.__db.commit()
     except InFailedSqlTransaction:
                 traceback.print_exc()

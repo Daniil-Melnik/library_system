@@ -48,7 +48,6 @@ def index():
 @app.route("/books")
 def books():
   _books = dbase.getBooks()
-  print (_books)
   return render_template('books.html', title="Книги", menu=hesh, books = _books)
 
 @app.route("/download/<book_id>")
@@ -113,7 +112,6 @@ def show_tags_1():
   tag_id = request.form.get('tag_id')
   all_tags = dbase.getAllTags()
   books_1 = []
-  print (tag_id)
   if (int(tag_id) == 0):
     books_1 = dbase.getBooks()
   return redirect(url_for('show_tags', tag_id=tag_id))
@@ -123,7 +121,6 @@ def show_tags(tag_id):
   all_tags = dbase.getAllTags()
   tag = dbase.getTag(tag_id)
   books_1 = []
-  print (tag_id)
   if (int(tag_id) == 0):
     books_1 = dbase.getBooks()
   else:
