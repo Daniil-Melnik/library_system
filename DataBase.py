@@ -13,7 +13,7 @@ class DataBase:
     self.__cur = db.cursor()
   
   def getBooks(self):
-    sql = '''SELECT * FROM dmel_books'''
+    sql = '''SELECT * FROM dmel_books ORDER BY id'''
     try:
       self.__cur.execute(sql)
       res = self.__cur.fetchall()

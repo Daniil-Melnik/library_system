@@ -12,8 +12,10 @@
     {% endfor %}
 
     <form action="" method="post">
-      <p><label class="form-label">Логин: </label><input type="text" name="user"/></p>
-      <p><label class="form-label">Пароль: </label> <input type="password" name="psw" value="" required /></p>
+      <table>
+        <tr class="login_tr"><th><label class="form-label">Логин: </label></th><td><input type="text" name="user"/></td></tr>
+        <tr class="login_tr"><th><label class="form-label">Пароль: </label></th><td><input type="password" name="psw" value="" required /></td></tr>
+      </table>
       <p align=center><input class="login_button" type="submit" value="Войти">
     </form>
   </div>

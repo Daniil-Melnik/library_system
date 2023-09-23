@@ -275,8 +275,8 @@ div.login {
 	width: 300px;
 	height: 175px;
 	padding: 20px;
-	color: #c39000;
-	background: #fafdd1;
+	color: #000230;
+	background: rgba(12, 14, 77, 0.2);
 	border: 2px solid #d5d8b2;
 	-webkit-border-radius: 20px;
 	-moz-border-radius: 20px;
