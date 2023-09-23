@@ -41,7 +41,7 @@
     <p>Теги: </p>
     <ul>
     {% for t in tags %}
-    <li>{{ t[1] }}</li>
+    <li><a class="a_tag_card" href="{{ url_for('show_tags', tag_id=t[0]) }}">{{ t[1] }}</a></li>
     {% endfor %}
     </ul>
 </div>

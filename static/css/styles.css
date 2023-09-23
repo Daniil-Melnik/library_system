@@ -14,7 +14,7 @@ a {
 }
 
 a:hover {
-    color: #CC0000;
+    color:#235c08;
     text-decoration: underline;
 }
 
@@ -273,9 +273,21 @@ h_3 {
 .card_tags li {
     background: rgba(181, 181, 181, 0.2);
     border-radius: 5px;
-    margin-left: 25px;
     height: 20px;
     padding: 5px;
+    margin-left: 25px;
 }
 
+.card_tags li:hover {
+    background: rgba(35, 92, 8, 0.2);
+    color: #334a31;
+}
 
+.a_tag_card {
+    color: #111;
+}
+
+.a_tag_card:hover {
+    text-decoration: none;
+    color:#235c08;
+}
