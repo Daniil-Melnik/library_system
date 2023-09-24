@@ -11,7 +11,8 @@ _hesh = [
         {"url": '.showList', "title": 'Книги'},
         {"url": '.show_tags', "title": 'Теги'},
         {"url": '.show_authors', "title": 'Авторы'},
-        {"url": '.addBook_form', "title": 'Добавить книгу'}
+        {"url": '.addBook_form', "title": 'Добавить книгу'},
+        {"url": '.add_book_author_main', "title": 'Добавить А-К'}
          ]
 
 def connect_db():
@@ -279,6 +280,26 @@ def delete_author(author_id):
     return redirect(url_for('.login'))
   dbase.deleteAuthor(author_id)
   return redirect(url_for('admin.show_authors'))
+
+
+@admin.route("/add_book_author_main")
+def add_book_author_main():
+  if not is_logged():
+    return redirect(url_for('.login'))
+  
+  books = dbase.getBooks()
+  authors = dbase.getAllAuthors()
+
+  return render_template('admin/add_book_author.html', books = books, authors = authors, title = "Добавить книге автора", hesh = _hesh)
+
+@admin.route("/add_book_author", methods = ["POST", "GET"])
+def add_book_author():
+  if not is_logged():
+    return redirect(url_for('.login'))
+  if request.method == "POST":
+    dbase.addBookAuthor(request.form.get('book_id'), request.form.get('author_id'))
+  return redirect(url_for('admin.add_book_author_main'))
+
 
 
 def login_admin():

@@ -21,6 +21,11 @@ CREATE TABLE dmel_book_tags (id serial PRIMARY KEY,
                              tag_id integer NOT NULL,
                              book_id integer NOT NULL);
 
+                             
+CREATE TABLE dmel_book_authors (id serial PRIMARY KEY,
+                             author_id integer NOT NULL,
+                             book_id integer NOT NULL);
+
 INSERT INTO dmel_books (title, author, year, num_pg, discription, is_open, file, image)
 VALUES ('Портрет Дориана Грея', 'Уайльд Оскар', 2019, 320,'Портрет молого человаека по имени Дориан Грей', 1, NULL, NULL),
     ('Овод', 'Войнич Э. Л.', 2017, 350,'Одно из самых известный произведений, которое не оставит читателя равнодушным', 1, NULL, NULL),

@@ -239,3 +239,15 @@ class DataBase:
                 traceback.print_exc()
                 self._cr.rollback()
                 pass
+  def addBookAuthor(self, book_id, author_id):
+      try:
+        self.__cur.execute('INSERT INTO dmel_book_authors (book_id, author_id)'
+                    'VALUES (%s, %s)',
+                    (book_id, author_id)
+                    )
+        self.__db.commit()
+        return True
+      except InFailedSqlTransaction:
+                  traceback.print_exc()
+                  self._cr.rollback()
+                  pass

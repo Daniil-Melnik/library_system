@@ -1,0 +1,32 @@
+{% extends 'admin/base_admin.html' %}
+
+{% block content %}
+{{ super() }}
+<p id="adm_title">Добавить книгу</p>
+<form action="{{ url_for('.add_book_author') }}" method="POST" enctype="multipart/form-data" >
+    <table>
+        <tr>
+            <th>Книга</th>
+            <td>
+                <select name="book_id">
+                {% for b in books %}
+                    <option value="{{ b[0] }}">{{ b[2] }}</option>
+                {% endfor %}
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <th>Автор</th>
+            <td>
+                <select name="author_id">
+                {% for a in authors %}
+                    <option value="{{ a[0] }}">{{ a[3] }}</option>
+                {% endfor %}
+                </select>
+            </td>
+        </tr>
+    </table>
+    <input type="submit" value="Ввести">
+</form>
+
+{% endblock %}
