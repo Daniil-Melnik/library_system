@@ -9,8 +9,9 @@ admin = Blueprint('admin', __name__, template_folder='templates', static_folder=
 _hesh = [
         {"url": 'index', "title": 'Витрина'},
         {"url": '.showList', "title": 'Книги'},
-        {"url": '.addBook_form', "title": 'Добавить книгу'},
-        {"url": '.show_tags', "title": 'Теги'}
+        {"url": '.show_tags', "title": 'Теги'},
+        {"url": '.show_authors', "title": 'Авторы'},
+        {"url": '.addBook_form', "title": 'Добавить книгу'}
          ]
 
 def connect_db():
@@ -255,6 +256,22 @@ def add_tag_book(book_id):
     if add_cond:
       dbase.addTagBook(book_id, tag_id)
   return redirect(url_for('admin.update_tags', book_id=book_id))
+
+@admin.route("/show_authors")
+def show_authors():
+  if not is_logged():
+    return redirect(url_for('.login'))
+  authors = dbase.getAllAuthors()
+  return render_template('admin/author_page.html', title = "Авторы", hesh = _hesh,  authors = authors)
+
+@admin.route("/add_author", methods = ["POST", "GET"])
+def add_author():
+  if not is_logged():
+    return redirect(url_for('.login'))
+  if request.method == "POST":
+    print (request.form['sec_name'])
+    dbase.addAuthor(request.form['name'], request.form['sourname'], request.form['sec_name'])
+  return redirect(url_for('admin.show_authors'))
 
 
 def login_admin():

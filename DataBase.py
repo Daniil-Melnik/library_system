@@ -207,3 +207,26 @@ class DataBase:
                 traceback.print_exc()
                 self._cr.rollback()
                 pass
+  
+  def getAllAuthors(self):
+    try:
+      self.__cur.execute(f"SELECT id, name, sec_name, sourname FROM dmel_authors ORDER BY id")
+      authors = self.__cur.fetchall()
+      return authors
+    except InFailedSqlTransaction:
+                traceback.print_exc()
+                self._cr.rollback()
+                pass
+
+  def addAuthor(self, name, sourname, sec_name):
+    try:
+      self.__cur.execute('INSERT INTO dmel_authors (name, sourname, sec_name)'
+                  'VALUES (%s, %s, %s)',
+                  (name, sourname, sec_name)
+                  )
+      self.__db.commit()
+      return True
+    except InFailedSqlTransaction:
+                traceback.print_exc()
+                self._cr.rollback()
+                pass

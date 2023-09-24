@@ -602,3 +602,44 @@ div.login {
 	color: #0011a8;
 	transition: 0.1s;
 }
+
+#adm_row_author_1 {
+	width: 50px;
+}
+
+#adm_row_author_2 {
+	width: 200px;
+}
+
+.adm_add_author_form {
+	text-align: center;
+	margin-left: 800px;
+	margin-top: 20px;
+	position: fixed;
+	background: rgba(164, 133, 229, 0.03);
+	width: 300px;
+	height: 130px;
+	border-radius: 5px;
+}
+
+.adm_add_author_form p {
+	font-size: 20px;
+	font-weight: bold;
+	margin-top: 5px;
+}
+
+.adm_author_subm{
+	width: 140px;
+	height: 40px;
+	background: rgba(88, 74, 117, 0.2);
+	border-radius: 5px;
+	border: 0;
+	font-size: 20px;
+	margin-bottom: 5px;
+}
+
+.adm_author_subm:hover{
+	background: rgba(164, 133, 229, 0.2);
+	color: #0011a8;
+	transition: 0.8s;
+}

@@ -1,0 +1,43 @@
+{% extends 'admin/base_admin.html' %}
+
+{% block content %}
+{{ super() }}
+<p id="adm_title">Авторы</p>
+<div class="adm_main_upd">
+  <table class="adm_tag_main_table">
+    <tr>
+      <th id="adm_row_author_1" align="center">id</th>
+      <th id="adm_row_author_2" align="center">Фамилия</th>
+      <th id="adm_row_author_2" align="center">Имя</th>
+      <th id="adm_row_author_2" align="center">Отчество</th>
+    </tr>
+    {% for a in authors %}
+    <tr>
+      <td align="center">{{ a[0] }}</td>
+      <td align="center">{{ a[3] }}</td>
+      <td align="center">{{ a[1] }}</td>
+      <td align="center">{{ a[2] }}</td>
+      <td><a href="">Удалить</a></td>
+    </tr>
+    {% endfor %}
+  </table>
+  <form class="adm_add_author_form" action="{{ url_for('admin.add_author') }}" method="POST" enctype="multipart/form-data" >
+    <p>Добавить автора</p>
+    <table>
+      <tr>
+        <th>Фамилия</th>
+        <td><input type="text" name="sourname"></td>
+      </tr>
+      <tr>
+        <th>Имя</th>
+        <td><input type="text" name="name"></td>
+      </tr>
+      <tr>
+        <th>Отчество</th>
+        <td><input type="text" name="sec_name"></td>
+      </tr>
+    </table>
+    <p><input id="adm_author_add_btn" type="submit"  value="Добавить"/>
+  </form>
+</div>
+{% endblock %}
