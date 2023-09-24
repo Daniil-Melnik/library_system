@@ -273,6 +273,13 @@ def add_author():
     dbase.addAuthor(request.form['name'], request.form['sourname'], request.form['sec_name'])
   return redirect(url_for('admin.show_authors'))
 
+@admin.route("/delete_author/<author_id>")
+def delete_author(author_id):
+  if not is_logged():
+    return redirect(url_for('.login'))
+  dbase.deleteAuthor(author_id)
+  return redirect(url_for('admin.show_authors'))
+
 
 def login_admin():
   session['admin_logged'] = 1

@@ -16,8 +16,12 @@
       <td align="center">{{ a[0] }}</td>
       <td align="center">{{ a[3] }}</td>
       <td align="center">{{ a[1] }}</td>
+      {% if a[2] %}
       <td align="center">{{ a[2] }}</td>
-      <td><a href="">Удалить</a></td>
+      {% else %}
+      <td align="center">-</td>
+      {% endif %}
+      <td><a href="{{ url_for('admin.delete_author', author_id=a[0]) }}">Удалить</a></td>
     </tr>
     {% endfor %}
   </table>

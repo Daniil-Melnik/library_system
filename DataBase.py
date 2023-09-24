@@ -230,3 +230,12 @@ class DataBase:
                 traceback.print_exc()
                 self._cr.rollback()
                 pass
+    
+  def deleteAuthor(self, author_id):
+    try:
+      self.__cur.execute("DELETE FROM dmel_authors WHERE id = %s", [author_id])
+      self.__db.commit()
+    except InFailedSqlTransaction:
+                traceback.print_exc()
+                self._cr.rollback()
+                pass
