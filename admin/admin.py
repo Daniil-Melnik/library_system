@@ -301,6 +301,14 @@ def add_book_author():
     dbase.addBookAuthor(request.form.get('book_id'), request.form.get('author_id'))
   return redirect(url_for('admin.add_book_author_main'))
 
+@admin.route("/update_book_author/<book_id>")
+def update_book_author(book_id):
+  if not is_logged():
+    return redirect(url_for('.login'))
+  authors = dbase.getAuthorsOfBook(book_id)
+  book = dbase.getBook(book_id)
+  return render_template('admin/update_book_author.html', authors = authors, title = "Редактировать авторов книги", hesh = _hesh, book = book)
+
 
 
 def login_admin():
