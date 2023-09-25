@@ -18,13 +18,17 @@
     {% for b in books %}
     <tr class="table_row_adm">
       <td class="row_1_adm">{{ b[0] }}
-      <td class="row_2_adm">{{ b[1] }}
-      <td class="row_3_adm"><a href="{{ url_for('admin.show_card', book_id=b[0]) }}">{{ b[2] }}</a>
-      <td class="row_4_adm">{{ b[3] }}
-      <td class="row_5_adm">{{ b[4] }}
-      <td class="row_6_adm">{{ b[5] [:60] + "..." }}
+      {% if b[10] %}
+      <td class="row_2_adm">{{ b[11] + ' ' + b[9][:1] + '. ' + b[10][:1] + '.'}}
+      {% else %}
+      <td class="row_2_adm">{{ b[11] + ' ' + b[9][:1] + '.'}}
+      {% endif %}
+      <td class="row_3_adm"><a href="{{ url_for('admin.show_card', book_id=b[0]) }}">{{ b[1] }}</a>
+      <td class="row_4_adm">{{ b[2] }}
+      <td class="row_5_adm">{{ b[3] }}
+      <td class="row_6_adm">{{ b[4] [:60] + "..." }}
       <td class="row_7_adm"><a href="{{ url_for('admin.delete_book', book_id=b[0]) }}">Удалить</a>
-      {% if b[8] == 1 -%}
+      {% if b[7] == 1 -%}
       <td class="row_8_adm">Да</td>
       {% else %}
       <td class="row_8_adm">Нет</td>

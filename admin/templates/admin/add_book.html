@@ -8,8 +8,18 @@
     <div>
       <table class="adm_update_main_table">
         <tr>
-          <th>Автор:</th>
-          <td><input type="text" name="author"></td>
+          <th>Первый автор:</th>
+          <td>
+            <select name="author" class="selection">
+            {% for a in authors %}
+            {% if a[2] %}
+              <option value="{{ a[0] }}">{{ a[3] + ' ' + a[1] + ' ' + a[2] }}</option>
+            {% else %}
+              <option value="{{ a[0] }}">{{ a[3] + ' ' + a[1]}}</option>
+            {% endif %}
+            {% endfor %}
+            </select>
+          </td>
         </tr>
         <tr>
           <th>Название:</th>

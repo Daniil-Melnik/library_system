@@ -70,8 +70,6 @@ class DataBase:
                 pass
   def updateBook(self, book_id, author, title, num_pg, year, discription, is_open):
     try:
-
-      self.__cur.execute('UPDATE dmel_books SET author = %s WHERE id = %s ', (author, book_id))
       self.__cur.execute('UPDATE dmel_books SET title = %s WHERE id = %s ', (title, book_id))
       self.__cur.execute('UPDATE dmel_books SET year = %s WHERE id = %s ', (year, book_id))
       self.__cur.execute('UPDATE dmel_books SET num_pg = %s WHERE id = %s ', (num_pg, book_id))

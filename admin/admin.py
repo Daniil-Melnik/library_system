@@ -73,14 +73,21 @@ def showList():
   if not is_logged():
     return redirect(url_for('.login'))
   books = dbase.getBooks()
-  return render_template('admin/book_list.html', title = "Список книг", hesh = _hesh, books = books)
+  used_books = []
+  for b in books:
+    author = dbase.getAuthorsOfBook(b[0])
+    used_books.append(b + author[0])
+    # print(b + author[0])
+    print("====================================")
+    print(author[0])
+  return render_template('admin/book_list.html', title = "Список книг", hesh = _hesh, books = used_books)
 
 @admin.route('/add_book', methods = ["POST", "GET"])
 def add_book():
   
   if request.method == "POST":
     val = 1 if request.form.get('is_open') else 0
-    dbase.addBook(request.form['author'],request.form['title'],request.form['num_pg'], request.form['year'], request.form['discr'], request.files['image'], request.files['file'], val)
+    dbase.addBook(request.form['author'], request.form['title'],request.form['num_pg'], request.form['year'], request.form['discr'], request.files['image'], request.files['file'], val)
     return redirect(url_for('admin.showList'))
 
 @admin.route('/add_book_form')
@@ -88,7 +95,8 @@ def addBook_form():
   if not is_logged():
     return redirect(url_for('.login'))
   books = dbase.getBooks()
-  return render_template('admin/add_book.html', title = "Добавить книгу", hesh = _hesh, books = books)
+  authors = dbase.getAllAuthors()
+  return render_template('admin/add_book.html', title = "Добавить книгу", hesh = _hesh, books = books, authors = authors)
 
 @admin.route("/delete_book/<book_id>")
 def delete_book(book_id):
@@ -122,7 +130,7 @@ def update_book(book_id):
   if request.method == "POST":
     val = 1 if request.form.get('is_open') else 0
 
-    dbase.updateBook(book_id, request.form['author'],request.form['title'],request.form['num_pg'], request.form['year'], request.form['discr'], val)
+    dbase.updateBook(book_id, request.form['title'],request.form['num_pg'], request.form['year'], request.form['discr'], val)
   books = dbase.getBooks()
   return redirect(url_for('admin.show_card', book_id=book_id))
 

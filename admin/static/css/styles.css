@@ -461,6 +461,15 @@ div.login {
 	border-radius: 5px;
 }
 
+.selection {
+	width: 300px;
+	height: 30px;
+	font-size: 17px;
+	border: 1 solid silver;
+	background: rgba(164, 133, 229, 0.2);
+	border-radius: 5px;
+}
+
 .adm_tag_subm{
 	width: 140px;
 	height: 40px;
