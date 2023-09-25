@@ -28,4 +28,17 @@
     {% endfor %}
 </table>
 
+<form action="{{ url_for('admin.add_book_author', book_id = book[0]) }}" method="POST">
+    <select name="author_id">
+        {% for a in used_authors %}
+        {% if a[2] %}
+        <option value="{{ a[0] }}">{{ a[3] + ' ' + a[1][:1] + '. ' + a[2][:1] + '.' }}</option>
+        {% else %}
+        <option value="{{ a[0] }}">{{ a[3] + ' ' + a[1][:1] + '.'}}</option>
+        {% endif %}
+        {% endfor %}
+    </select>
+    <input type="submit" value="Добавить">
+</form>
+
 {% endblock %}

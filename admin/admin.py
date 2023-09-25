@@ -292,13 +292,13 @@ def add_book_author_main():
 
   return render_template('admin/add_book_author.html', books = books, authors = authors, title = "Добавить книге автора", hesh = _hesh)
 
-@admin.route("/add_book_author", methods = ["POST", "GET"])
-def add_book_author():
+@admin.route("/add_book_author/<book_id>", methods = ["POST", "GET"])
+def add_book_author(book_id):
   if not is_logged():
     return redirect(url_for('.login'))
   if request.method == "POST":
-    dbase.addBookAuthor(request.form.get('book_id'), request.form.get('author_id'))
-  return redirect(url_for('admin.add_book_author_main'))
+    dbase.addBookAuthor(book_id, request.form.get('author_id'))
+  return redirect(url_for('admin.update_book_author', book_id = book_id))
 
 @admin.route("/update_book_author/<book_id>")
 def update_book_author(book_id):
@@ -306,7 +306,18 @@ def update_book_author(book_id):
     return redirect(url_for('.login'))
   authors = dbase.getAuthorsOfBook(book_id)
   book = dbase.getBook(book_id)
-  return render_template('admin/update_book_author.html', authors = authors, title = "Редактировать авторов книги", hesh = _hesh, book = book)
+  used_authors = []
+  all_authors = dbase.getAllAuthors()
+  for all in all_authors:
+    us = True
+    for a in authors:
+      if (int(all[0]) == int(a[0])):
+        us = False
+    if (us):
+      used_authors.append(all)
+  print(used_authors)
+
+  return render_template('admin/update_book_author.html', authors = authors, title = "Редактировать авторов книги", hesh = _hesh, book = book, used_authors = used_authors)
 
 @admin.route("/delete_author_book/<author_id>/<book_id>")
 def delete_auhor_book(book_id, author_id):

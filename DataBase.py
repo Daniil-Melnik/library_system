@@ -13,7 +13,7 @@ class DataBase:
     self.__cur = db.cursor()
   
   def getBooks(self):
-    sql = '''SELECT * FROM dmel_books ORDER BY id'''
+    sql = '''SELECT * FROM dmel_books ORDER BY title'''
     try:
       self.__cur.execute(sql)
       res = self.__cur.fetchall()
@@ -210,7 +210,7 @@ class DataBase:
   
   def getAllAuthors(self):
     try:
-      self.__cur.execute(f"SELECT id, name, sec_name, sourname FROM dmel_authors ORDER BY id")
+      self.__cur.execute(f"SELECT id, name, sec_name, sourname FROM dmel_authors ORDER BY sourname")
       authors = self.__cur.fetchall()
       return authors
     except InFailedSqlTransaction:
