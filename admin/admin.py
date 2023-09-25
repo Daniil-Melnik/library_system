@@ -11,8 +11,7 @@ _hesh = [
         {"url": '.showList', "title": 'Книги'},
         {"url": '.show_tags', "title": 'Теги'},
         {"url": '.show_authors', "title": 'Авторы'},
-        {"url": '.addBook_form', "title": 'Добавить книгу'},
-        {"url": '.add_book_author_main', "title": 'Добавить А-К'}
+        {"url": '.addBook_form', "title": 'Добавить книгу'}
          ]
 
 def connect_db():
@@ -309,7 +308,12 @@ def update_book_author(book_id):
   book = dbase.getBook(book_id)
   return render_template('admin/update_book_author.html', authors = authors, title = "Редактировать авторов книги", hesh = _hesh, book = book)
 
-
+@admin.route("/delete_author_book/<author_id>/<book_id>")
+def delete_auhor_book(book_id, author_id):
+  if not is_logged():
+    return redirect(url_for('.login'))
+  dbase.deleteAuthorBook(book_id, author_id)
+  return redirect(url_for('admin.update_book_author', book_id=book_id))
 
 def login_admin():
   session['admin_logged'] = 1

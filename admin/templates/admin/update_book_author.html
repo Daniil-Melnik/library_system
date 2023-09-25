@@ -23,7 +23,7 @@
         <td>{{ a[3] }}</td>
         <td>{{ a[1] }}</td>
         <td>{{ a[2] }}</td>
-        <td><a href="">удалить</a></td>
+        <td><a href="{{ url_for('admin.delete_auhor_book', book_id = book[0], author_id = a[0]) }}">удалить</a></td>
     </tr>
     {% endfor %}
 </table>
