@@ -251,3 +251,20 @@ class DataBase:
                   traceback.print_exc()
                   self._cr.rollback()
                   pass
+
+  def getAuthorsOfBook(self, book_id):
+    try:
+      self.__cur.execute(f"SELECT * FROM dmel_book_authors WHERE book_id = '{book_id}'")
+      authors = self.__cur.fetchall()
+      self.__db.commit()
+      all_authors = self.getAllAuthors()
+      used_authors = []
+      for a in all_authors:
+          for b in authors:
+              if (int(a[0]) == int(b[1])):
+                  used_authors.append(a)
+      return used_authors
+    except InFailedSqlTransaction:
+                traceback.print_exc()
+                self._cr.rollback()
+                pass

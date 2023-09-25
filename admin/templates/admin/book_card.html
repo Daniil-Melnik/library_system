@@ -16,12 +16,20 @@
       <p>Основная информация:</p>
       <table class="adm_card_table">
         <tr>
+          <th>Автор</th>
+          <td>{{ authors[0][3] }}</td>
+        </tr>
+        {% if len > 1 %}
+        {% for i in range (1, len) %}
+        <tr>
+          <th></th>
+          <td>{{ authors[i][3] }}</td>
+        </tr>
+        {% endfor %}
+        {% endif %}
+        <tr>
           <th class="adm_card_row_1_1">Название</th>
           <td class="adm_card_row_1_2">{{ book[2] }}</td>
-        </tr>
-        <tr>
-          <th>Автор</th>
-          <td>{{ book[1] }}</td>
         </tr>
         <tr>
           <th>Год издания</th>

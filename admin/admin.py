@@ -174,11 +174,12 @@ def show_card(book_id):
   book_tags = dbase.getTagsOfBook(book_id)
   all_tags = dbase.getAllTags()
   tags = []
+  authors = dbase.getAuthorsOfBook(book_id)
   for t in book_tags:
     for t2 in all_tags:
       if(t[1] == t2[0]):
         tags.append(t2[1])
-  return render_template('admin/book_card.html', hesh = _hesh, title="Информация о книге", book = _book, tags = tags)
+  return render_template('admin/book_card.html', hesh = _hesh, title="Информация о книге", book = _book, tags = tags, authors = authors, len = len(authors))
 
 @admin.route("/download/<book_id>")
 def download(book_id):
