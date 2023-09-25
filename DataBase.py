@@ -1,7 +1,7 @@
 from flask import url_for
 import psycopg2
 
-import traceback  # Just to show the full traceback
+import traceback
 from psycopg2 import errors
 
 InFailedSqlTransaction = errors.lookup('25P02')

@@ -14,19 +14,35 @@
     </div>
     <div class="main_info">
       <p>Основная информация:</p>
-      <table class="adm_card_table">
+      <table class="adm_card_author_table">
         <tr>
+          {% if len > 1 %}
+          <th>Авторы</th>
+          {% else %}
           <th>Автор</th>
-          <td>{{ authors[0][3] }}</td>
+          {% endif %}
+          {% if authors[0][2] %}
+          <td>{{ authors[0][3] + ' ' + authors[0][1][:1] + '. ' + authors[0][2][:1] + '.' }}</td>
+          {% else %}
+          <td>{{ authors[0][3] + ' ' + authors[0][1][:1] + '.'}}</td>
+          {% endif %}
+          <td><a href="">Изменить</a></td>
         </tr>
         {% if len > 1 %}
         {% for i in range (1, len) %}
         <tr>
           <th></th>
-          <td>{{ authors[i][3] }}</td>
+          {% if authors[i][2] %}
+          <td>{{ authors[i][3] + ' ' + authors[i][1][:1] + '. ' + authors[i][2][:1] + '.' }}</td>
+          {% else %}
+          <td>{{ authors[i][3] + ' ' + authors[i][1][:1] + '.'}}</td>
+          {% endif %}
         </tr>
         {% endfor %}
         {% endif %}
+      </table>
+      <p></p>
+      <table class="adm_card_table">
         <tr>
           <th class="adm_card_row_1_1">Название</th>
           <td class="adm_card_row_1_2">{{ book[2] }}</td>

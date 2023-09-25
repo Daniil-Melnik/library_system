@@ -152,6 +152,19 @@ html, body {
 	text-align: right;
 }
 
+.adm_card_author_table{
+	margin-left: 65px;
+}
+
+.adm_card_author_table th{
+	text-align: right;
+}
+
+.adm_card_author_table td{
+	width: 200px;
+	text-align: right;
+}
+
 .adm_tags {
 	max-width: 400px;
 	max-height: 500px;
