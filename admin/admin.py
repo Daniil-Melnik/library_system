@@ -70,7 +70,7 @@ def logout():
 
 @admin.route('/book_list')
 def showList():
-  if not is_logged():
+  if not is_logged(): 
     return redirect(url_for('.login'))
   books = dbase.getBooks()
   used_books = []
