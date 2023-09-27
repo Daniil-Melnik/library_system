@@ -15,16 +15,36 @@
                 <td>{{ book[2] }}</td>
             </tr>
             <tr>
-                <th>Автор:</th>
-                <td>{{ book[1] }}</td>
-            </tr>
+                {% if len > 1 %}
+                <th>Авторы</a></th>
+                {% else %}
+                <th>Автор</a></th>
+                {% endif %}
+                {% if authors[0][2] %}
+                <td>{{ authors[0][3] + ' ' + authors[0][1][:1] + '. ' + authors[0][2][:1] + '.' }}</td>
+                {% else %}
+                <td>{{ authors[0][3] + ' ' + authors[0][1][:1] + '.'}}</td>
+                {% endif %}
+              </tr>
+              {% if len > 1 %}
+              {% for i in range (1, len) %}
+              <tr>
+                <th></th>
+                {% if authors[i][2] %}
+                <td>{{ authors[i][3] + ' ' + authors[i][1][:1] + '. ' + authors[i][2][:1] + '.' }}</td>
+                {% else %}
+                <td>{{ authors[i][3] + ' ' + authors[i][1][:1] + '.'}}</td>
+                {% endif %}
+              </tr>
+              {% endfor %}
+              {% endif %}
             <tr>
                 <th>Год издания:</th>
-                <td>{{ book[3] }}</td>
+                <td>{{ book[2] }}</td>
             </tr>
             <tr>
                 <th>Кол-во страниц:</th>
-                <td>{{ book[4] }}</td>
+                <td>{{ book[3] }}</td>
             </tr>
             <tr>
                 <th>Файл:</th>
@@ -34,7 +54,7 @@
     </div>
     <div class="card_discription">
         <h1>Описание:</h1>
-        <p class="text_disription">{{ book[5] }}</p>
+        <p class="text_disription">{{ book[4] }}</p>
     </div>
 </div>
 <div class="card_tags">

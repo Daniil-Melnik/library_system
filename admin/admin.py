@@ -77,9 +77,6 @@ def showList():
   for b in books:
     author = dbase.getAuthorsOfBook(b[0])
     used_books.append(b + author[0])
-    # print(b + author[0])
-    print("====================================")
-    print(author[0])
   return render_template('admin/book_list.html', title = "Список книг", hesh = _hesh, books = used_books)
 
 @admin.route('/add_book', methods = ["POST", "GET"])
@@ -257,8 +254,6 @@ def add_tag_book(book_id):
     book_id = book_id
     tag_id = request.form.get('tag_id')
     add_cond = True
-    print (book_id)
-    print (tag_id)
     for el in dbase.getTagsOfBook(book_id):
       if ((int(el[2]) == int(book_id)) and (int(el[1]) == int(tag_id))):
         add_cond=False
@@ -278,7 +273,6 @@ def add_author():
   if not is_logged():
     return redirect(url_for('.login'))
   if request.method == "POST":
-    print (request.form['sec_name'])
     dbase.addAuthor(request.form['name'], request.form['sourname'], request.form['sec_name'])
   return redirect(url_for('admin.show_authors'))
 
@@ -323,7 +317,6 @@ def update_book_author(book_id):
         us = False
     if (us):
       used_authors.append(all)
-  print(used_authors)
 
   return render_template('admin/update_book_author.html', authors = authors, title = "Редактировать авторов книги", hesh = _hesh, book = book, used_authors = used_authors)
 
