@@ -90,6 +90,47 @@ html, body {
 	color: #ff3636
 }
 
+#adm_upd_authors_form {
+	margin-left: 120px;
+}
+
+#adm_upd_auth_btn {
+	width: 100px;
+	height: 25px;
+	background: rgba(88, 74, 117, 0.2);
+	border: 0;
+	border-radius: 5px;
+}
+
+#adm_upd_auth_btn:hover {
+	background: rgba(164, 133, 229, 0.2);
+	color: #0011a8;
+	transition: 0.1s;
+}
+
+#adm_upd_authors_form select {
+	width: 200px;
+	height: 30px;
+	font-size: 17px;
+	border: 0;
+	background: rgba(164, 133, 229, 0.2);
+	border-radius: 5px;
+}
+
+#adm_upd_authors {
+	display: flex;
+}
+
+#auth_adm a {
+	text-decoration: none;
+	color: #0011a8
+}
+
+#auth_adm a:hover {
+	text-decoration: none;
+	color: #ff3636
+}
+
 .row_8_adm {
 	width: 30px;
 	text-align: center;
@@ -249,6 +290,30 @@ html, body {
 
 #adm_author_ref {
 	font-weight: bold;
+}
+
+#adm_author_table {
+	margin-left: 20px;
+}
+
+#adm_author_table td {
+	text-align: center;
+}
+
+#auth_1 {
+	width: 50px;
+}
+
+#auth_2 {
+	width: 170px;
+}
+
+#auth_3 {
+	width: 180px;
+}
+
+#auth_4 {
+	width: 175px;
 }
 
 .book_discription {
