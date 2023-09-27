@@ -247,6 +247,10 @@ html, body {
 	text-align: left
 }
 
+#adm_author_ref {
+	font-weight: bold;
+}
+
 .book_discription {
 	max-width: 100%;
 }

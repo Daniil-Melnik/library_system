@@ -37,7 +37,7 @@ class DataBase:
       self.__cur.execute(f"SELECT * FROM dmel_books WHERE id = '{book_id}' LIMIT 1")
       res = self.__cur.fetchone()
       print (res)
-      img = res[7]
+      img = res[6]
       if img: return img
     except :
       print("Ошибка чтения из БД")
