@@ -48,7 +48,11 @@ def index():
 @app.route("/books")
 def books():
   _books = dbase.getBooks()
-  return render_template('books.html', title="Книги", menu=hesh, books = _books)
+  used_books = []
+  for b in _books:
+    author = dbase.getAuthorsOfBook(b[0])
+    used_books.append(b + author[0])
+  return render_template('books.html', title="Книги", menu=hesh, books = used_books)
 
 @app.route("/download/<book_id>")
 def download(book_id):

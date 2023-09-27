@@ -18,15 +18,19 @@
     <th id="row_6_x">Описание</th>
   </tr>
   {% for b in books %}
-  {% if b[8] == 1 %}
+  {% if b[7] == 1 %}
   <tr>
     <td id="row_1">{{ b[0] }}
     <td><div id="table_img_div"><a href="{{ url_for('show_card', book_id=b[0]) }}"><img id="table_img" src="{{ url_for('book_image', book_id = b[0]) }}"></a></div>
-    <td id="row_2">{{ b[1] }}
-    <td id="row_3"><a href="{{ url_for('show_card', book_id=b[0]) }}">{{ b[2] }}</a>
-    <td id="row_4">{{ b[3] }}
-    <td id="row_5">{{ b[4] }}
-    <td id="row_6">{{ b[5] }}
+    {% if b[10] %}
+    <td id="row_2">{{ b[11] + ' ' + b[9][:1] + '. ' + b[10][:1] + '.'}}
+    {% else %}
+    <td id="row_2">{{ b[11] + ' ' + b[9][:1] + '.'}}
+    {% endif %}
+    <td id="row_3"><a href="{{ url_for('show_card', book_id=b[0]) }}">{{ b[1] }}</a>
+    <td id="row_4">{{ b[2] }}
+    <td id="row_5">{{ b[3] }}
+    <td id="row_6">{{ b[4] }}
     <td id="row_7"><a href="{{ url_for('download', book_id=b[0], template='books.html') }}">скачать</a>
   </tr>
   {% endif %}
