@@ -9,22 +9,38 @@
         <table class="adm_update_main_table"> 
           <tr>
             <th>Название:</th>
-            <td><input type="text" name="title" value="{{ book[2] }}"></td>
+            <td><input type="text" name="title" value="{{ book[1] }}"></td>
           </tr>
           <tr>
             <th>Год издания:</th>
-            <td><input id="adm_int_input" type="text" name="year" value="{{ book[3] }}"></td>
+            <td><select name="year" id="adm_int_input">
+              {% for i in range (1900, book[2]) %}
+              <option value="{{ i }}">{{ i }}</option>
+              {% endfor %}
+              <option value="{{ book[2] }}" selected>{{ book[2] }}</option>
+              {% for i in range (book[2] + 1, 2024) %}
+              <option value="{{ i }}">{{ i }}</option>
+              {% endfor %}
+            </select></td>
           </tr>
           <tr>
             <th>Кол-во страниц:</th>
-            <td><input id="adm_int_input" class="glow-on-hover" type="text" name="num_pg" value="{{ book[4] }}"></td>
+            <td><select name="num_pg" id="adm_int_input">
+              {% for i in range (1, book[3]) %}
+              <option value="{{ i }}">{{ i }}</option>
+              {% endfor %}
+              <option value="{{ book[3] }}" selected>{{ book[3] }}</option>
+              {% for i in range (book[3] + 1, 1000) %}
+              <option value="{{ i }}">{{ i }}</option>
+              {% endfor %}
+            </select></td>
           </tr>
         </table>
         <p class="adm_check"><label for="is_open">Показывать  </label><input type="checkbox" name="is_open" checked></p></td></p>
       </div>
       <div class="adm_update_discr">
         <p id="adm_check_discr_title">Описание:</p>
-        <textarea id="adm_update_textarea" name="discr" cols="25" rows="5">{{ book[5] }}</textarea>
+        <textarea id="adm_update_textarea" name="discr" cols="25" rows="5">{{ book[4] }}</textarea>
       </div>
     </div>
     <input id="adm_chng_subm" type="submit"  value="Изменить"/>

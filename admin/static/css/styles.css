@@ -90,7 +90,7 @@ html, body {
 	color: #ff3636
 }
 
-#adm_upd_authors_form {
+#adm_upd_authors_form { 
 	margin-left: 120px;
 }
 
@@ -419,9 +419,12 @@ div.login {
 }
 
 #adm_int_input {
-	height: 25px;
-	font-size: 20px;
 	width: 70px;
+	height: 25px;
+	font-size: 17px;
+	border: 1 solid silver;
+	background: rgba(164, 133, 229, 0.2);
+	border-radius: 5px;
 }
 
 .adm_main_upd {

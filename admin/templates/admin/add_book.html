@@ -27,11 +27,29 @@
         </tr>
         <tr>
           <th>Год издания:</th>
-          <td><input id="adm_int_input" type="text" name="year"></td>
+          <td>
+            <select name="year" id="adm_int_input">
+            {% for i in range (1900, 1980) %}
+            <option value="{{ i }}">{{ i }}</option>
+            {% endfor %}
+            <option value="{{ 1980 }}" selected>{{ 1980 }}</option>
+            {% for i in range (1981, 2024) %}
+            <option value="{{ i }}">{{ i }}</option>
+            {% endfor %}
+          </select>
+        </td>
         </tr>
         <tr>
           <th>Кол-во страниц:</th>
-          <td><input id="adm_int_input" type="text" name="num_pg"></td>
+          <td><select name="num_pg" id="adm_int_input">
+            {% for i in range (1, 300) %}
+            <option value="{{ i }}">{{ i }}</option>
+            {% endfor %}
+            <option value="{{ 300 }}" selected>{{ 300 }}</option>
+            {% for i in range (301, 1000) %}
+            <option value="{{ i }}">{{ i }}</option>
+            {% endfor %}
+          </select></td>
         </tr>
       </table>
       <p class="adm_check">Показывать: <input type="checkbox" name="is_open" checked></p>

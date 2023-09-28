@@ -84,7 +84,8 @@ def add_book():
   
   if request.method == "POST":
     val = 1 if request.form.get('is_open') else 0
-    dbase.addBook(request.form['author'], request.form['title'],request.form['num_pg'], request.form['year'], request.form['discr'], request.files['image'], request.files['file'], val)
+    author = dbase.getAuthor(request.form.get('author'))
+    dbase.addBook(author, request.form['title'],request.form.get('num_pg'), request.form.get('year'), request.form['discr'], request.files['image'], request.files['file'], val)
     return redirect(url_for('admin.showList'))
 
 @admin.route('/add_book_form')
@@ -127,8 +128,7 @@ def update_book(book_id):
   if request.method == "POST":
     val = 1 if request.form.get('is_open') else 0
 
-    dbase.updateBook(book_id, request.form['title'],request.form['num_pg'], request.form['year'], request.form['discr'], val)
-  books = dbase.getBooks()
+    dbase.updateBook(book_id, request.form['title'],request.form.get('num_pg'), request.form.get('year'), request.form['discr'], val)
   return redirect(url_for('admin.show_card', book_id=book_id))
 
 @admin.route("/update_files_form/<book_id>")

@@ -49,12 +49,19 @@ class DataBase:
 
       dat = image.read()
       binary_img = psycopg2.Binary(dat)
-      self.__cur.execute('INSERT INTO dmel_books (author, title, year, num_pg, discription, file, image, is_open)'
-                  'VALUES (%s, %s, %s, %s, %s, %s, %s, %s)',
-                  (author, title, year, num_pg, discription, binary_file, binary_img, is_open)
+      self.__cur.execute('INSERT INTO dmel_books ( title, year, num_pg, discription, file, image, is_open)'
+                  'VALUES ( %s, %s, %s, %s, %s, %s, %s)',
+                  ( title, year, num_pg, discription, binary_file, binary_img, is_open)
                   )
 
       self.__db.commit()
+      self.__cur.execute(f"SELECT id FROM dmel_books WHERE year = '{year}' AND num_pg = '{num_pg}' AND title LIKE '{title}'")
+      id = self.__cur.fetchone()
+      self.__cur.execute('INSERT INTO dmel_book_authors (book_id, author_id)'
+                    'VALUES (%s, %s)',
+                    (id, author[0])
+                    )
+      self.__db.commit()      
       return True
     except :
       print("Ошибка добавления в БД")
@@ -68,7 +75,7 @@ class DataBase:
                 traceback.print_exc()
                 self._cr.rollback()
                 pass
-  def updateBook(self, book_id, author, title, num_pg, year, discription, is_open):
+  def updateBook(self, book_id, title, num_pg, year, discription, is_open):
     try:
       self.__cur.execute('UPDATE dmel_books SET title = %s WHERE id = %s ', (title, book_id))
       self.__cur.execute('UPDATE dmel_books SET year = %s WHERE id = %s ', (year, book_id))
