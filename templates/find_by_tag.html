@@ -17,17 +17,21 @@
     <table class="books_table_light">
       <tr>
         <th id="row_1_light">id</th>
-        <th id="row_2_light">Автор</th>
+        <th id="row_2_light">Автор</a></th>
         <th id="row_3_light">Название</th>
         <th id="row_4_light">Год издания</th>
       </tr>
       {% for b in books %}
-      {% if b[8] == 1 %}
+      {% if b[7] == 1 %}
       <tr>
         <td id="row_1_light">{{ b[0] }}
-        <td id="row_2_light">{{ b[1] }}
-        <td id="row_3_light"><a href="{{ url_for('show_card', book_id=b[0]) }}">{{ b[2] }}</a>
-        <td id="row_4_light">{{ b[3] }}
+        {% if b[10] %}
+        <td id="row_2_light">{{ b[11] + ' ' + b[9][:1] + '. ' + b[10][:1] + '.' }}</td>
+        {% else %}
+        <td id="row_2_light">{{ b[11] + ' ' + b[9][:1] + '.'}}</td>
+        {% endif %}
+        <td id="row_3_light"><a href="{{ url_for('show_card', book_id=b[0]) }}">{{ b[1] }}</a>
+        <td id="row_4_light">{{ b[2] }}
       </tr>
       {% endif %}
       {% endfor %}

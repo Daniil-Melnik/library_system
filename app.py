@@ -129,7 +129,12 @@ def show_tags(tag_id):
     books_1 = dbase.getBooks()
   else:
     books_1 = dbase.getBooksByTag(tag_id)
-  return render_template('find_by_tag.html', menu = hesh, title="Найти по тегу", tags = all_tags, books = books_1, tag_id = tag_id, tag = tag)
+  books_2 = []
+  for b in books_1:
+    authors = dbase.getAuthorsOfBook(b[0])
+    books_2.append(b + authors[0])
+  print (books_2[0])
+  return render_template('find_by_tag.html', menu = hesh, title="Найти по тегу", tags = all_tags, books = books_2, tag_id = tag_id, tag = tag)
 
 # comment to create db
 if __name__ == "__main__":

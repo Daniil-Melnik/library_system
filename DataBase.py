@@ -276,3 +276,11 @@ class DataBase:
                 self._cr.rollback()
                 pass
     
+  def getAuthor(self, author_id):
+      try:
+        self.__cur.execute(f"SELECT * FROM dmel_authors WHERE id = '{author_id}' LIMIT 1")
+        res = self.__cur.fetchone()
+        if res: return res
+      except:
+        print("Ошибка чтения из БД")
+      return []
