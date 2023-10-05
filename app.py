@@ -57,23 +57,26 @@ def books():
 @app.route("/download/<book_id>")
 def download(book_id):
   book = dbase.getBook(book_id)
+  print(book)
   current_path = os.getcwd()
-  download_name = book[2].lower().replace(" ", "_") + ".pdf"
+  download_name = book[1].lower().replace(" ", "_") + ".pdf"
+  if (book[5]):
+    f = open('code.txt', "wb")
+    f.write(book[5].tobytes())
 
-  f = open('code.txt', "wb")
-  f.write(book[6].tobytes())
-
-  # file = open(current_path+"/"+download_name, 'wb')
-  dir_spl  = current_path.split('\\')
-  dir = "C:/Users/" + dir_spl[2] + "/Downloads"
-  file = open(dir + "/" + download_name, 'wb')
-  for line in open('code.txt', 'rb').readlines():
-    file.write(line)
-  file.close()
+    # file = open(current_path+"/"+download_name, 'wb')
+    dir_spl  = current_path.split('\\')
+    dir = "C:/Users/" + dir_spl[2] + "/Downloads"
+    file = open(dir + "/" + download_name, 'wb')
+    for line in open('code.txt', 'rb').readlines():
+      file.write(line)
+    file.close()
 
   _books = dbase.getBooks()
-  if file:
+  if (book[5] and file):
     flash("Файл " + download_name + " сохранён в " + dir, "success")
+  else:
+    flash("Файл не может быть скачан", "error")
   if not book:
     abort(404)
   return redirect (url_for('show_card', book_id=book_id))
