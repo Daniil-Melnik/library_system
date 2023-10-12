@@ -20,7 +20,7 @@ def connect_db():
         user="user_1",
         password="1234")
   return conn
-
+  
 def create_db():
   db = connect_db()
   f = open('./instance/db.sql', 'r', encoding='utf-8')
